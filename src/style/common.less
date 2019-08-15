@@ -1,0 +1,280 @@
+body, div, span, header, footer, nav, 
+section, aside, article, ul, dl, dt, 
+dd, li, a, p, h1, h2, h3, h4,h5, h6, 
+i, b, textarea, button, input, select, 
+figure, figcaption {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    font-style: normal;
+    text-decoration: none;
+    border: 0 none;
+    font-family: "Microsoft Yahei",sans-serif;
+    -webkit-tap-highlight-color:transparent;
+    -webkit-font-smoothing: antialiased;
+    
+    &:focus {
+        outline: none;
+    }
+} 
+
+input[type="button"], input[type="submit"], input[type="search"], input[type="reset"] {
+    -webkit-appearance: none;
+}
+
+textarea { 
+    -webkit-appearance: none;
+}   
+
+html,
+body {
+    height: 100%;
+    width: 100%;
+}
+
+// 解决表格头部与body内容错位的问题
+body .el-table th.gutter {
+    display: table-cell !important;
+}
+
+body .el-table colgroup.gutter {
+    display: table-cell !important;
+}
+
+.el-header {
+    padding: 0;
+}
+
+// 上传列表按钮右上角统计数字的位置调整
+.el-badge__content.is-fixed {
+    top: 7px;
+}
+
+// 登出icon的大小设置
+i.el-icon-new-icon-GroupCopy {
+    font-size: 12px;
+}
+
+// 全局提示框的z-index的层级设置
+.message_zIndex {
+    z-index: 5000 !important;
+}
+
+// 修复同一个按钮多次点击时，提示信息从上往下依次排开的问题
+// 此处只能做到提示信息框的信息重复在同一个位置，不能控制弹出框的个数（Ant Design of Vue 该组件已经解决该问题，以后可以考虑换UI框架）
+.el-message {
+    top: 20px !important;
+}
+
+// 侧边栏展开时侧边栏宽度（去除水平滚动条）和首页icon字体大小设置
+.largeWidth {
+    width: 211px !important;
+
+    // logo大小设置
+    h1 {
+        width: 210px;
+        height: 58px;
+        overflow: hidden;
+        border-bottom: 2px solid #1890ff;
+
+        img {
+            position: relative;
+            top: -17px;
+        }
+    }
+
+    // 二级导航字体大小
+    .el-menu-item {
+        font-size: 14px;
+    }
+
+    // 只有一个自己元素的导航字体大小
+    .singleNav {
+        font-size: 16px;
+    }
+
+    // 有二级导航的父级元素字体大小
+    .el-submenu__title {
+        font-size: 16px;
+    }
+
+    i.el-icon-new-icon-home {
+        font-size: 24px !important;
+    }
+}
+
+// 侧边栏收缩时侧边栏宽度（去除水平滚动条）和首页icon大小设置以及其他模块icon的字体大小设置
+.smallWidth {
+    width: 65px !important;
+
+    // logo大小设置
+    h1 {
+        width: 64px;
+        height: 58px;
+        overflow: hidden;
+        border-bottom: 2px solid #1890ff;
+
+        img {
+            width: 100%;
+            height: 45px;
+            position: relative;
+            top: 3px;
+        }
+    }
+
+    .el-menu--collapse>.el-menu-item [class^=el-icon-],
+    .el-menu--collapse>.el-submenu>.el-submenu__title [class^=el-icon-] {
+        font-size: 30px;
+    }
+
+    i.el-icon-new-icon-home {
+        position: relative;
+        right: 3px;
+        font-size: 34px !important;
+    }
+}
+
+// 设备中心icon字体大小
+i.el-icon-new-icon-ziyuanxhdpi {
+    font-size: 15px !important;
+}
+
+// 设备告警icon字体大小
+i.el-icon-new-icon-jinggao {
+    font-size: 22px !important;
+}
+
+//  用户中心icon字体大小
+i.el-icon-new-icon-yonghuliebiao {
+    font-size: 20px !important;
+}
+
+// 用户角色icon字体大小
+i.el-icon-new-icon-yonghujiaose1 {
+    font-size: 26px !important;
+}
+
+// 侧边栏 默认背景色同侧边导航菜单背景色一致，调整侧边栏背景颜色，即el-menu的background-color值时，此样式中的颜色需同时改成el-menu的background-color值
+aside.el-aside {
+    background-color: #545c64;
+}
+
+// 取消侧边栏导航默认的右边border，消除侧边栏menu区域与非该区域1像素的边框导致的导航栏右侧不对齐问题
+.el-menu {
+    border-right: 0 none;
+}
+
+.el-badge__content {
+    background-color: #1890ff;
+}
+
+// 有子级模块的父级模块的icon的颜色默认为白色
+.el-submenu__title i {
+    color: #fff;
+}
+
+// 子级模块的icon颜色默认为白色
+.el-menu-item i {
+    color: #fff;
+}
+
+// 弹出层底部添加上部边框，用于区分内容和页脚区域
+.el-dialog__footer {
+    border-top: 1px solid #ccc;
+    text-align: right;
+    padding: 10px 20px 10px;
+}
+
+// 弹出层头部添加底部边框，用于区分内容和头部区域
+.el-dialog__header {
+    border-bottom: 1px solid #ccc;
+}
+
+// card组件头部padding值修改
+.el-card__header {
+    padding: 10px 20px;
+}
+
+// card组件标题和标题icon位置修改
+.card-title-adjust {
+    display: inline-block; 
+    position: relative;
+    top: 5px;
+}
+
+// card组件头部样式
+.clearfix {
+    &:before,
+    &:after {
+        display: table;
+        content: "";
+    }
+
+    &:after {
+        clear: both;
+    }
+}
+
+// 元素右浮动
+.item-right {
+    float: right;
+}
+
+.item-left {
+    float: left;
+}
+
+// 元素左外边距5像素
+.item-ml-5 {
+    margin-left: 5px;
+}
+
+.item-mt-20 {
+    margin-top: 20px;
+}
+
+.itme-mr-5 {
+    margin-right: 5px;
+}
+
+.item-mb-20 {
+    margin-bottom: 20px;
+}
+
+// 清除浮动
+.clear:after {
+    content: '';
+    display: block;
+    height: 0;
+    visibility: hidden;
+    clear: both;
+}
+
+.user-info-more {
+    
+    i.el-icon-new-icon-zhanghaoquanxianguanli {
+        font-size: 12px;
+    }
+}
+
+// 搜索栏底部margin去除
+.el-form.search {
+
+    .el-form-item {
+        margin: 0;
+        margin-right: 15px;
+    }
+}
+
+.item-pr {
+    position: relative;
+}
+
+
+.tableBtn  {
+    i {
+        font-size: 12px;
+    }
+}
+
+
