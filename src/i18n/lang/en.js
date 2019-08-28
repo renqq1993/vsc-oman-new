@@ -372,13 +372,13 @@ const en = {
                     title:'Historical Dictionary Task List',
                     columns:{
                         ID: 'ID',
-                        dictMenu:'DictMenu',
-                        taskStatus:'TaskStatus',
-                        dictFilename:'DictFilename',
-                        dictAlign:'DictAlign',
-                        dictFileSize:'DictFileSize',
-                        splitSize:'SplitSize',
-                        commitTime:'CommitTime',
+                        dictMenu:'Dicttionary Menu',
+                        taskStatus:'Task Status',
+                        dictFilename:'Dictionary Filename',
+                        dictAlign:'Dictionary Align',
+                        dictFileSize:'Dicttionary FileSize',
+                        splitSize:'Split Size',
+                        commitTime:'Commit Time',
                         operation:'Operation',
                         remark:'Remark'
                     },
@@ -389,6 +389,76 @@ const en = {
                     btn:{
                         delete:'Delete',
                         deleteSelection:'Delete Selection'
+                    },
+                    tips:{
+                        title:'Prompt',
+                        deleteSelection:'Are you sure to delete all selected dictionary',
+                        delete:'Are you sure to delete this dictionary',
+                        confirm:'confirm',
+                        cancel:'cancel',
+                        cancelTip:'Cancel all deletion',
+                        selection:'Please select the dictionary you want to delete, then click the button'
+                    }
+                },
+                splitDict:{
+                    title:"Dictionary List",
+                    splitDictTable:"Segmentation Dictionary List",
+                    dictClassificationTable:'Dictionary Classification',
+                    mergeTable:'Dictionary Merging',
+                    editTable:'Dictionary aliases',
+                    columns:{
+                        ID:'ID',
+                        originFilename:'Origin Filename',
+                        dictAlign:'Dictionary aliases',
+                        filesize:'File Size',
+                        passwordNum:'Password Number',
+                        splitDict:'Segmentation Dictionary',
+                        dictClassification:'Dictionary Classification',
+                        encodingStyle:"Encoding Style",
+                        createTime:"Create Time",
+                        operation:"Operation",
+                    },
+                    splitDictColumn:{
+                        ID:'ID',
+                        name:'Name',
+                        path:'Path',
+                        size:'Size',
+                        pwdNum:'Password Number',
+                        pwdLength:'Password Length',
+                        encodingStyle:'Encoding Style',
+                        createTime:'create Time',
+                    },
+                    dictClassificationColumn:{
+                        name:'Name',
+                        operation:'Operation'
+                    },
+                    mergeColumn:{
+                        orginDict:'Origin Dictionary',
+                        targetDict:'Target Dictionary',
+                    },
+                    editColumn:{
+                        name:'Dictionary aliases'
+                    },
+                    btn:{
+                        clear:'Clear',
+                        add:'Add',
+                        close:'Close',
+                        delete:'Delete',
+                        replace:'Replace',
+                        edit:'Edit',
+                        merge:'Merge',
+                        confirm:'Confirm',
+                        cancel:'Cancel',
+                        detail:'Detail',
+                        mergeDict:'Merge Dictionary'
+                    },
+                    tips:{
+                        mergeTip:'After merging, the source dictionary will be merged into the destination dictionary and deleted.',
+                        deleteTip:'Are you sure to delete this dictionary',
+                        selectTip:'Please select two dictionary data to merge',
+                        emptyTip:"Click on the tree node on the left to select the dictionary classification",
+                        deleteClassifyTip:'Are you sure to delete this dictionary Classification',
+                        clearClassifyTip:'Are you sure to delete the dictionary Classification',
                     }
                 }
             },

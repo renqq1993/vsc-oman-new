@@ -8,6 +8,7 @@ import store from '@/store'
 import App from './App'
 import router from './router'
 import '@/assets/icon/iconfont.css'   // 引入第三方图标
+import '@/assets/icon/iconfont1.css' 
 
 import config from '../static/config'
 

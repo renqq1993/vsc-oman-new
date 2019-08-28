@@ -39,6 +39,75 @@ export const createUser = data => fetch('/webapp/index.php/home/user/createUser'
 export const getHisOptLists = data => fetch('/webapp/index.php/home/Operation/getHsOperation', data);
 
 
+/***************************  字典管理  **********************************/
+/**
+ * 获取历史字典信息（包含生成数据列表） 
+ */
+export const getHisDictLists = data => fetch('/webapp/index.php/home/Operation/getHsOperation', data, 'Post');
+
+/**
+ * 删除选中历史字典信息
+ */
+export const deleteSelectionDict = data => fetch('/webapp/index.php/home/Operation/getHsOperation', data, 'Post');
+
+/**
+ * 删除历史字典 
+ */
+export const deleteHisDict = data => fetch('/webapp/index.php/home/Operation/getHsOperation', data);
+
+/**
+ * 合并切分字典 
+ */
+export const mergeDict = data => fetch('/webapp/index.php/home/Operation/getHsOperation', data);
+
+/**
+ * 获取切分字典列表
+ */
+export const getSpliteDictList = data => fetch('/webapp/index.php/home/Operation/getHsOperation', data);
+
+/**
+ * 获取字典分类
+ */
+export const getDictClassification = data => fetch('/webapp/index.php/home/Operation/getHsOperation', data);
+
+/**
+ * 获取特定字典分类
+ */
+export const getDictClassificationById = data => fetch('/webapp/index.php/home/Operation/getHsOperation', data);
+
+/**
+ * 替换特定字典分类
+ */
+export const replaceDictClassification = data => fetch('/webapp/index.php/home/Operation/getHsOperation', data);
+
+/**
+ * 删除特定字典分类
+ */
+export const deleteDictClassification = data => fetch('/webapp/index.php/home/Operation/getHsOperation', data);
+
+/**
+ * 清空特定字典分类
+ */
+export const clearDictClassification = data => fetch('/webapp/index.php/home/Operation/getHsOperation', data);
+
+/**
+ * 添加字典分类
+ */
+export const addDictClassification = data => fetch('/webapp/index.php/home/Operation/getHsOperation', data);
+
+/**
+ * 删除切分字典
+ */
+export const deleteSplitDict = data => fetch('/webapp/index.php/home/Operation/getHsOperation', data);
+
+/**
+ * 修改切分字典
+ */
+export const editSplitDict = data => fetch('/webapp/index.php/home/Operation/getHsOperation', data);
+
+
+
+
 /***************************  首页展示  **********************************/
 /**
  * 获取系统设备信息总览，即展示在首页中的内容

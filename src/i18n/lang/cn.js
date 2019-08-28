@@ -390,6 +390,76 @@ const cn = {
                     btn:{
                         delete:'删除',
                         deleteSelection:'删除选中'
+                    },
+                    tips:{
+                        title:'提示',
+                        deleteSelection:'是否删除所有选中历史字典',
+                        delete:'是否删除选中历史字典',
+                        confirm:'确认',
+                        cancel:'取消',
+                        cancelTip:'已取消所有历史操作',
+                        selection:'请选择字典后，再进行删除'
+                    }
+                },
+                splitDict:{
+                    title:"字典列表",
+                    splitDictTable:"切分字典列表",
+                    dictClassificationTable:'字典分类',
+                    mergeTable:'字典合并',
+                    editTable:'字典别名',
+                    columns:{
+                        ID:'ID',
+                        originFilename:'原始文件名',
+                        dictAlign:'字典别名',
+                        filesize:'文件大小',
+                        passwordNum:'口令个数',
+                        splitDict:'切分字典',
+                        dictClassification:'字典分类',
+                        encodingStyle:"编码方式",
+                        createTime:"创建时间",
+                        operation:"操作",
+                    },
+                    splitDictColumn:{
+                        ID:'ID',
+                        name:'名称',
+                        path:'路径',
+                        size:'大小',
+                        pwdNum:'口令个数',
+                        pwdLength:'口令长度',
+                        encodingStyle:'编码方式',
+                        createTime:'创建时间',
+                    },
+                    dictClassificationColumn:{
+                        name:'分类名称',
+                        operation:'操作'
+                    },
+                    mergeColumn:{
+                        orginDict:'源字典',
+                        targetDict:'目标字典',
+                    },
+                    editColumn:{
+                        name:'字典别名'
+                    },
+                    btn:{
+                        clear:'清空',
+                        add:'添加',
+                        close:'关闭',
+                        delete:'删除',
+                        replace:'替换',
+                        edit:'编辑',
+                        merge:'合并',
+                        confirm:'确定',
+                        cancel:'取消',
+                        detail:'详情',
+                        mergeDict:'合并字典'
+                    },
+                    tips:{
+                        mergeTip:'合并后，源字典将合并到目的字典中，并且源字典将被删除',
+                        deleteTip:'是否确定删除该字典',
+                        selectTip:"请选择两条字典数据进行合并",
+                        emptyTip:"请点击左边的树节点选择字典分类",
+                        deleteClassifyTip:'是否确定删除该字典分类',
+                        clearClassifyTip:'是否确定删除该字典分类',
                     }
                 }
             },

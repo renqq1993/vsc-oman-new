@@ -4,57 +4,41 @@
         <el-card class="app-config-list-card" shadow="hover">
             <div slot="header" class="clearfix">
                 <p class="card-title-adjust">
-                    <i class="el-icon-new-icon-yingyongpeizhi"></i>
+                    <i class="el-icon-new-icon-icon_renwujincheng"></i>
                     <span class="item-ml-5">{{ $t(prefix + 'title') }}</span>
                 </p>
                 <el-button-group class="item-right">
-                    <el-button @click="handleDeleteMulti" type="danger" icon="el-icon-delete"  size="mini" :title="$t(prefix + 'deleteSelection')"></el-button>
+                    <el-button @click="handleDeleteMulti" type="danger" :disabled="disable" icon="el-icon-delete"  size="mini" :title="$t( prefix + 'btn.deleteSelection')"></el-button>
                 </el-button-group>
             </div>
-            <div class="app-config-main clear" v-loading="loading" :element-loading-text="$t('app.table.loading')" element-loading-spinner="el-icon-loading" element-loading-background="rgba(0, 0, 0, 0.8)">
-                <el-table :data="tableData" border @selection-change="handleSelectionChange">
-                    <el-table-column type="selection" width="35" fixed></el-table-column>
-                    <el-table-column prop="iAppID" fixed :label="$t('app.table.task.appConfig.columns.appID')" width="125" show-overflow-tooltip>
+            <div class="app-config-main clear" v-loading="loading" :element-loading-text="$t('app.table.loading')" style="width: 100%" element-loading-spinner="el-icon-loading" element-loading-background="rgba(0, 0, 0, 0.8)">
+                <el-table :data="tableData" ref="multipleTable" border @selection-change="handleSelectionChange" style="width: 100%">
+                    <el-table-column type="selection" width="50" align="center" fixed></el-table-column>
+                    <el-table-column prop="ID" fixed :label="$t( prefix + 'columns.ID')" width="50" align="center" show-overflow-tooltip>
                     </el-table-column>
-                    <el-table-column prop="sAppName" fixed :label="$t('app.table.task.appConfig.columns.appName')" width="150" show-overflow-tooltip>
+                    <el-table-column prop="dictMenu" fixed :label="$t(prefix + 'columns.dictMenu')" width="200" align="center" show-overflow-tooltip>
                     </el-table-column>
-                    <el-table-column prop="sAppType" fixed :label="$t('app.table.task.appConfig.columns.appDesc')" width="150" show-overflow-tooltip>
-                    </el-table-column>
-                    <el-table-column prop="iResValiType" :label="$t('app.table.task.appConfig.columns.resultVerType')" width="190" show-overflow-tooltip>
-                    </el-table-column>
-                    <el-table-column prop="sCommandLine" :label="$t('app.table.task.appConfig.columns.commandLine')" width="130" show-overflow-tooltip>
-                    </el-table-column>
-                    <el-table-column prop="sTargetType" :label="$t('app.table.task.appConfig.columns.targetType')" width="110" show-overflow-tooltip>
-                    </el-table-column>
-                    <el-table-column prop="iPlanModeType" :label="$t('app.table.task.appConfig.columns.decrypMode')" width="150" show-overflow-tooltip>
-                    </el-table-column>
-                    <el-table-column prop="sWorkDir" :label="$t('app.table.task.appConfig.columns.workingDir')" width="160" show-overflow-tooltip>
-                    </el-table-column>
-                    <el-table-column prop="lOps" :label="$t('app.table.task.appConfig.columns.ops')" width="190" show-overflow-tooltip>
-                    </el-table-column>
-                    <el-table-column prop="sVerLib" :label="$t('app.table.task.appConfig.columns.VerLib')" width="160" show-overflow-tooltip>
-                    </el-table-column>
-                    <el-table-column prop="iPwdMaxLen" :label="$t('app.table.task.appConfig.columns.pwdMax')" width="160" show-overflow-tooltip>
-                    </el-table-column>
-                    <el-table-column prop="iPwdMinLen" :label="$t('app.table.task.appConfig.columns.pwdMin')" width="160" show-overflow-tooltip>
-                    </el-table-column>
-                    <el-table-column prop="sInitialRes" :label="$t('app.table.task.appConfig.columns.isResInit')" width="170" show-overflow-tooltip>
-                    </el-table-column>
-                    <el-table-column prop="iDeepVerify" :label="$t('app.table.task.appConfig.columns.isDeepVer')" width="200" show-overflow-tooltip>
-                    </el-table-column>
-                    <el-table-column prop="iMultStr" :label="$t('app.table.task.appConfig.columns.isMultTarget')" width="170" show-overflow-tooltip>
-                    </el-table-column>
-                    <el-table-column prop="iSort" :label="$t('app.table.task.appConfig.columns.willSort')" width="90" show-overflow-tooltip>
-                    </el-table-column>
-                    <el-table-column :label="$t('app.table.task.appConfig.columns.appFile')" align="center" width="135">
+                    <el-table-column prop="taskStatus" fixed :label="$t(prefix + 'columns.taskStatus')" width="150" align="center" show-overflow-tooltip>
                         <template slot-scope="scope">
-                            <el-button size="mini" plain icon="el-icon-new-icon-ceshishenqing" class="tableBtn" :title="$t('app.table.task.appConfig.btnTips.configFile')" type="primary" @click="handleConfigure(scope.$index, scope.row)"></el-button>
+                            <div v-if="scope.row.taskStatus == '执行成功'" class="task_status_column" style="background: #19be6b;">{{ scope.row.taskStatus }}</div>
+                            <div v-else class="task_status_column" style="background: #f00;">{{ scope.row.taskStatus }}</div>
                         </template>
                     </el-table-column>
-                    <el-table-column fixed="right" :label="$t('app.table.task.appConfig.columns.operation')" align="center" width="150">
+                    <el-table-column prop="dictFilename" :label="$t(prefix + 'columns.dictFilename')" width="200" align="center"  show-overflow-tooltip>
+                    </el-table-column>
+                    <el-table-column prop="dictAlign" :label="$t(prefix + 'columns.dictAlign')" width="150" align="center" show-overflow-tooltip>
+                    </el-table-column>
+                    <el-table-column prop="dictFileSize" :label="$t(prefix + 'columns.dictFileSize')" width="200" align="center" show-overflow-tooltip>
+                    </el-table-column>
+                    <el-table-column prop="splitSize" :label="$t(prefix + 'columns.splitSize')" width="100" align="center" show-overflow-tooltip>
+                    </el-table-column>
+                    <el-table-column prop="commitTime" :label="$t(prefix + 'columns.commitTime')" width="150" align="center" show-overflow-tooltip>
+                    </el-table-column>
+                    <el-table-column prop="remark" :label="$t(prefix + 'columns.remark')" width="100" align="center" show-overflow-tooltip>
+                    </el-table-column>
+                    <el-table-column fixed="right" prop="operation" :label="$t(prefix + 'columns.operation')" width="100" align="center" show-overflow-tooltip>
                         <template slot-scope="scope">
-                            <el-button size="mini" plain icon="el-icon-delete" :title="$t('app.table.task.appConfig.btnTips.delete')" type="danger" @click="handleDelete(scope.$index, scope.row)"></el-button>
-                            <el-button size="mini" plain icon="el-icon-edit" :title="$t('app.table.task.appConfig.btnTips.edit')" type="primary" @click="handleEdit(scope.$index, scope.row)"></el-button>
+                          <el-button plain @click="handleDelete(scope.row)" type="danger" icon="el-icon-delete"  size="mini" :title="$t( prefix + 'btn.delete')"></el-button>
                         </template>
                     </el-table-column>
                 </el-table>
@@ -70,222 +54,76 @@
                 </el-pagination>
             </div>
         </el-card>
-
-        <!-- 保存新建的应用 -->
-        <apps-config-dialog v-if="add.addDialogVisible" @handle-save="handleSave" @handle-close="handleClose" :title="add.addConfigTitle" :dialogVisible="add.addDialogVisible" :formInit="add.addForm" :dialogType="add.dialogType"></apps-config-dialog>
     </div>
 </template>
 <script>
 import Vue from 'vue'
 import $ from 'jquery'
 import { getHisOptLists, deleteHisOpt } from '@/api/getData'
-import AppsConfigDialog from '@/views/task/appconfig/AppsConfigDialog';
+import {HistoryDict} from '@/mock/mock.js'
 export default {
     name: 'AppConfig',
-    components: {
-        AppsConfigDialog
-    },
     data() {
         return {
             prefix:"app.table.dictionary.history.",
-            formInline: {
-                appName: '',
-                appID: ''
-            },
-            loading: false,
-            currentPage: 1,
-            pageRange: Vue.prototype.$config.PageRange,
-            pageSize: Vue.prototype.$config.PageRange[0],
-            total: 0,
-            tableData: [
-                {   
-                    iAppID: 28,
-                    sAppName: 'IPMD4',
-                    sAppType: 'MD4',
-                    iResValiType: 'Verify only correct result',
-                    sCommandLine: './sp -c/app/PwdSearch.ini',
-                    sTargetType: 'Cipher Text',
-                    iPlanModeType: 'PS Password Generation',
-                    sWorkDir: '/root/PwdSearch',
-                    lOps: '357,943',
-                    sVerLib: '/root/ServiceMng/sp/libspVerify.so',
-                    iPwdMaxLen: 255,
-                    iPwdMinLen: 1,
-                    sInitialRes: 'NO',
-                    iDeepVerify: 'NO',
-                    iMultStr: 'NO',
-                    iSort: 'NO',
-                    sAppVersion: ''
-                },
-                {   
-                    iAppID: 34,
-                    sAppName: 'IPSHA0',
-                    sAppType: 'SHA0',
-                    iResValiType: 'Verify only correct result',
-                    sCommandLine: './sp -c/app/PwdSearch.ini',
-                    sTargetType: 'Cipher Text',
-                    iPlanModeType: 'PS Password Generation',
-                    sWorkDir: '/root/PwdSearch',
-                    lOps: '357,497',
-                    sVerLib: '/root/ServiceMng/sp/libspVerify.so',
-                    iPwdMaxLen: 255,
-                    iPwdMinLen: 1,
-                    sInitialRes: 'NO',
-                    iDeepVerify: 'NO',
-                    iMultStr: 'NO',
-                    iSort: 'NO',
-                    sAppVersion: ''
-                },
-                {   
-                    iAppID: 35,
-                    sAppName: 'IPSHA3',
-                    sAppType: 'SHA3',
-                    iResValiType: 'Verify only correct result',
-                    sCommandLine: './sp -c/app/PwdSearch.ini',
-                    sTargetType: 'Cipher Text',
-                    iPlanModeType: 'PS Password Generation',
-                    sWorkDir: '/root/PwdSearch',
-                    lOps: '295,671',
-                    sVerLib: '/root/ServiceMng/sp/libspVerify.so',
-                    iPwdMaxLen: 32,
-                    iPwdMinLen: 1,
-                    sInitialRes: 'NO',
-                    iDeepVerify: 'NO',
-                    iMultStr: 'NO',
-                    iSort: 'NO',
-                    sAppVersion: ''
-                }
-            ],
-            tableData1: [
-                {   
-                    iAppID: 28,
-                    sAppName: 'IPMD4',
-                    sAppType: 'MD4',
-                    iResValiType: 'Verify only correct result',
-                    sCommandLine: './sp -c/app/PwdSearch.ini',
-                    sTargetType: 'Cipher Text',
-                    iPlanModeType: 'PS Password Generation',
-                    sWorkDir: '/root/PwdSearch',
-                    lOps: '357,943',
-                    sVerLib: '/root/ServiceMng/sp/libspVerify.so',
-                    iPwdMaxLen: 255,
-                    iPwdMinLen: 1,
-                    sInitialRes: 'NO',
-                    iDeepVerify: 'NO',
-                    iMultStr: 'NO',
-                    iSort: 'NO',
-                    sAppVersion: ''
-                },
-                {   
-                    iAppID: 34,
-                    sAppName: 'IPSHA0',
-                    sAppType: 'SHA0',
-                    iResValiType: 'Verify only correct result',
-                    sCommandLine: './sp -c/app/PwdSearch.ini',
-                    sTargetType: 'Cipher Text',
-                    iPlanModeType: 'PS Password Generation',
-                    sWorkDir: '/root/PwdSearch',
-                    lOps: '357,497',
-                    sVerLib: '/root/ServiceMng/sp/libspVerify.so',
-                    iPwdMaxLen: 255,
-                    iPwdMinLen: 1,
-                    sInitialRes: 'NO',
-                    iDeepVerify: 'NO',
-                    iMultStr: 'NO',
-                    iSort: 'NO',
-                    sAppVersion: ''
-                },
-                {   
-                    iAppID: 35,
-                    sAppName: 'IPSHA3',
-                    sAppType: 'SHA3',
-                    iResValiType: 'Verify only correct result',
-                    sCommandLine: './sp -c/app/PwdSearch.ini',
-                    sTargetType: 'Cipher Text',
-                    iPlanModeType: 'PS Password Generation',
-                    sWorkDir: '/root/PwdSearch',
-                    lOps: '295,671',
-                    sVerLib: '/root/ServiceMng/sp/libspVerify.so',
-                    iPwdMaxLen: 32,
-                    iPwdMinLen: 1,
-                    sInitialRes: 'NO',
-                    iDeepVerify: 'NO',
-                    iMultStr: 'NO',
-                    iSort: 'NO',
-                    sAppVersion: ''
-                }
-            ],
+            loading:false,
             multipleSelection: [],
-            rules: {
-                appName: [{required: false}],
-                appID: [{required: false}]
-            },
-            deleteDisabled: true,
-
-            add: {
-                addConfigTitle: '',
-                addDialogVisible: false,
-                dialogType: 0,
-                addForm: {
-                    appName: '',
-                    appType: '',
-                    appVersion: '',
-                    targetType: '',
-                    appPwdMax: '',
-                    appPwdMin: '',
-                    commandLine: Vue.prototype.$config.TaskModule.Application_Config.App_Config_Commad_Line || './sp -c/app/PwdSearch/PwdSearch.ini',
-                    verifyLib: Vue.prototype.$config.TaskModule.Application_Config.App_Config_Verify_Lib || '/root/ServiceMng/sp/libspVerify.so',
-                    workingDir: Vue.prototype.$config.TaskModule.Application_Config.App_Config_Working_Dir || '/root/PwdSearch',
-                    ops: '',
-                    planMode: '',
-                    resValidateType: '',
-                    isSort: '',
-                    isMultStr: '',
-                    isConfigIni: '',
-                    isConfigDeepVerify: ''
-                }
-            }
+            currentPage:1,
+            pageRange: this.$config.PageRange,
+            pageSize: this.$config.PageRange[0],
+            total:0,
+            tableData:[],
+            //设置多选删除按钮禁用
+            disable:true,
         }
     },
-    mounted() {
-        this.initData(this.currentPage, this.pageSize, this.formInline.appID, this.formInline.appName);
-    },
     methods: {
-        // 初始化表格，获取用户列表
-        async initData(curPage, pageSize, appID, appName) {
+        // 初始化表格
+        async initData(message) {
             this.loading = true;
-
             try {
-                // const res = await getUsers({ 
-                //     curPage: curPage, 
-                //     pageSize: pageSize,
-                //     appID: appID,
-                //     appName: appName,
+                // const res = await  getHisDictLists({
+                // 	curPage: this.currentPage, 
+                // 	pageSize: this.pageSize
                 // });	
 
                 let res = {
-                    status: 1,
-                    message: 'query history operation ok!',
-                    total: 13,
-                    data: this.$i18n.locale === 'en' ? this.tableData1.slice((this.currentPage - 1) * this.pageSize, this.currentPage * this.pageSize) : this.tableData.slice((this.currentPage - 1) * this.pageSize, this.currentPage * this.pageSize)
-                }
-
+                    message:"加载历史字典成功",
+                    status:1,
+                    data:HistoryDict,
+                    total:2,
+                };
                 if (res.status == 1) {
                     this.loading = false;
-
-                    this.total     = res.total;
-                    this.tableData = res.data;		// 加载用户列表，填充表格数据
-
-                    // 修改表格和右侧屏幕可视区域宽度
-                    if (this.tableData.length > 4) {
-                        $(".itme-mr-10 section").css({'margin-right': 0});
-                    } else {
-                        $(".itme-mr-10 section").css({'margin-right': '15px'});
+                    this.total = res.total;
+                    this.tableData = res.data;		// 加载历史字典列表，填充表格数据
+                    let num = 0;
+                    if(this.multipleSelection.length > 0){
+                        this.multipleSelection.forEach(function(row){
+                            let selectedDict =  this.tableData.find(dict => dict.id == row.id);
+                            if(selectedDict != undefined){
+                                num ++;
+                                this.$refs.multipleTable.toggleRowSelection(selectedDict);
+                            }
+                        });
+                        if(num == 0){
+                            this.$nextTick(() => {
+                                this.$refs.multipleTable.clearSelection();
+                            });
+                        }
                     }
-                    
+                    else{
+                        this.$nextTick(() => {
+                            this.$refs.multipleTable.clearSelection();
+                        })
+                    }
+
+                        if(message == undefined){
+                        message = res.message;
+                    }
                     this.$message({
                         type: 'success',
-                        message: res.message,
+                        message: message,
                         duration: 2000,
                         showClose: true
                     });
@@ -303,198 +141,117 @@ export default {
                 });
             }
         },
-        // 触发搜索
-        onSearch() {
-            this.initData(this.currentPage, this.pageSize, this.formInline.appID, this.formInline.appName);
-        },
-        // 重置搜索框输入
-        onReset(searchForm) {
-            this.$refs[searchForm].resetFields();
-        },
-        // 切换每页显示条数
-        handlePageSizeChange(val) {
-            this.pageSize = val;
-            this.initData(this.currentPage, this.pageSize, this.formInline.appID, this.formInline.appName);
-        },
-        // 切换当前页码
-        handleCurrentPageChange(val) {
-            this.currentPage = val;
-            this.initData(this.currentPage, this.pageSize, this.formInline.appID, this.formInline.appName);
-        },
-        // 点击删除按钮
-        handleConfigure(index, row) {
-            console.log('添加啦');
-        },
-        // 点击删除选中按钮
-        handleDeleteMulti() {
-            if (this.multipleSelection.length == 0) {
-                return this.$message({
-                    type: 'info',
-                    message: this.$t('app.table.task.appConfig.operation.deleteAllError'),
+
+        async deleteDict(msg,data){
+            try {
+                // let res = {};
+                // if(msg == "deleteSelection"){
+                //     res = deleteSelectionDict(data);
+                // }
+                // else{
+                //     res = deleteHisDict(data);
+                // }
+                let res = {
+                    message:"删除指定历史字典成功",
+                    status:1,
+                    data:HistoryDict
+                };
+                if (res.status == 1) {
+                    this.initData(res.message);
+                } else {
+                    throw new Error(res.message);
+                }
+            } catch(err) {
+                this.$message({
+                    type: 'error',
+                    message: err.message,
                     duration: 2000,
                     showClose: true
                 });
+            }    
+        },
+
+        //删除选中
+        handleDeleteMulti(){
+            if(this.multipleSelection.length > 0){
+                this.$confirm(this.$t(this.prefix + 'tips.deleteSelection'), this.$t(this.prefix + 'tips.title'), {
+                    confirmButtonText: this.$t(this.prefix + 'tips.confirm'),
+                    cancelButtonText: this.$t(this.prefix + 'tips.cancel'),
+                    type: 'warning'
+                }).then(async () => {
+                    console.log("then");
+                    let deleteIDs  = [];
+                    this.multipleSelection.forEach(function(row){
+                        deleteIDs.push(row.ID);
+                    });
+                    deleteDict("deleteSelection",data);
+                    this.multipleSelection = [];
+                }).catch(() => {
+                    console.log("catch");
+                    this.$message({
+                        type: 'info',
+                        message: this.$t(this.prefix + 'tips.cancelTip'),
+                        duration: 2000,
+                        customClass: 'message_zIndex',
+                        showClose: true
+                    });          
+                });
             }
-
-            let _this = this;
-            this.$confirm(this.$t('app.table.task.appConfig.operation.deleteAll.confirm'), this.$t('app.table.task.appConfig.operation.deleteAll.tipType'), {
-                confirmButtonText: this.$t('app.table.task.appConfig.operation.deleteAll.sure'),
-                cancelButtonText: this.$t('app.table.task.appConfig.operation.deleteAll.cancle'),
-                type: 'warning'
-            }).then(async () => {
-                try {
-                    // const res = await deleteHisOpt({
-                    //     id: row.id
-                    // });	
-
-                    console.log(this.multipleSelection, '123');
-
-                    let res = {
-                        status: 1,
-                        message: 'delete selected records successfully.'
-                    }
-
-                    if (res.status == 1) {
-                        // 重新加载用户信息表格
-                        this.initData(this.currentPage, this.pageSize, this.formInline.appID, this.formInline.appName);
-
-                        this.$message({
-                            type: 'success',
-                            message: res.message,
-                            duration: 2000,
-                            showClose: true
-                        });
-                    } else {
-                        throw new Error(res.message);
-                    }
-                } catch(err) {
+            else{
                     this.$message({
                         type: 'error',
-                        message: err.message,
+                        message: this.$t(this.prefix + 'tips.selection'),
                         duration: 2000,
+                        customClass: 'message_zIndex',
                         showClose: true
-                    });
-                }
-            }).catch(() => {
-                this.$message({
-                    type: 'info',
-                    message: this.$t('app.table.task.appConfig.operation.deleteAll.cancleTips'),
-                    duration: 2000,
-                    showClose: true
-                });          
-            });
-        },
-        // 点击删除单条记录按钮，也即点击表格中的删除按钮的事件
-        handleDelete(index, row) {
-
-            let _this = this;
-            this.$confirm(this.$t('app.table.task.appConfig.operation.delete'), this.$t('app.table.task.appConfig.operation.deleteAll.tipType'), {
-                confirmButtonText: this.$t('app.table.task.appConfig.operation.deleteAll.sure'),
-                cancelButtonText: this.$t('app.table.task.appConfig.operation.deleteAll.cancle'),
-                type: 'warning'
-            }).then(async () => {
-                try {
-                    // const res = await deleteHisOpt({
-                    //     id: row.id
-                    // });	
-
-                    let res = {
-                        status: 1,
-                        message: 'delete single record successfully'
-                    }
-
-                    if (res.status == 1) {
-                        // 重新加载用户信息表格
-                        this.initData(this.currentPage, this.pageSize, this.formInline.appID, this.formInline.appName);
-
-                        this.$message({
-                            type: 'success',
-                            message: res.message,
-                            duration: 2000,
-                            showClose: true
-                        });
-                    } else {
-                        throw new Error(res.message);
-                    }
-                } catch(err) {
-                    this.$message({
-                        type: 'error',
-                        message: err.message,
-                        duration: 2000,
-                        showClose: true
-                    });
-                }
-            }).catch(() => {
-                this.$message({
-                    type: 'info',
-                    message: this.$t('app.table.task.appConfig.operation.deleteAll.cancleTips'),
-                    duration: 2000,
-                    showClose: true
-                });          
-            });
-        },
-        // 表格复选框选择变化事件
-        handleSelectionChange(val) {
-            this.multipleSelection = val;
-
-            if (this.multipleSelection.length > 0) {
-                this.deleteDisabled = false;
-            } else {
-                this.deleteDisabled = true;
+                    });    
             }
-        },
-        // 增加应用配置
-        handleCreate() {
-            this.add.addDialogVisible = true;
-
-            this.add.dialogType = 0;    // 表示是新增配置
-            this.add.addConfigTitle = this.$t('app.table.task.appConfig.addAndEdit.title.add');
-        },
-        // 修改选中的某个应用的配置
-        handleEdit(index, row) {
-            console.log(row);
-
-            this.add.addForm.appName            = row.sAppName;
-            this.add.addForm.appType            = row.sAppType;
-            this.add.addForm.appVersion         = row.sAppVersion;
-            this.add.addForm.targetType         = row.sTargetType;
-            this.add.addForm.appPwdMax          = row.iPwdMaxLen;
-            this.add.addForm.appPwdMin          = row.iPwdMinLen;
-            this.add.addForm.commandLine        = row.sCommandLine;
-            this.add.addForm.verifyLib          = row.sVerLib;
-            this.add.addForm.workingDir         = row.sWorkDir;
-            this.add.addForm.ops                = row.lOps;
-            this.add.addForm.planMode           = row.iPlanModeType;
-            this.add.addForm.resValidateType    = row.iResValiType;
-            this.add.addForm.isSort             = row.iSort;
-            this.add.addForm.isMultStr          = row.iMultStr;
-            this.add.addForm.isConfigIni        = row.sInitialRes;
-            this.add.addForm.isConfigDeepVerify = row.iDeepVerify;
-
-            this.add.dialogType = 1;    // 表示是修改配置
-            this.add.addConfigTitle = this.$t('app.table.task.appConfig.addAndEdit.title.edit') + '(' + this.$t('app.table.task.appConfig.columns.appID') + ': ' + row.iAppID + ', ' + this.$t('app.table.task.appConfig.columns.appName') + ': ' + row.sAppName + ')';
             
-            this.$nextTick(() => {
-                this.add.addDialogVisible = true;
+        },
+
+            //删除
+        handleDelete(val){
+            this.$confirm(this.$t(this.prefix + 'tips.delete'), this.$t(this.prefix + 'tips.title'), {
+                confirmButtonText: this.$t(this.prefix + 'tips.confirm'),
+                cancelButtonText: this.$t(this.prefix + 'tips.cancel'),
+                type: 'warning'
+            }).then(async () => {
+                deleteDict("deleteSelection",{ID:val.id});
+            }).catch(() => {
+                this.$message({
+                    type: 'info',
+                    message: this.$t(this.prefix + 'tips.cancelTip'),
+                    duration: 2000,
+                    customClass: 'message_zIndex',
+                    showClose: true
+                });          
             });
         },
-        // 保存新增的或者修改后的应用的配置，type：0表示新增，1表示修改
-        handleSave(e) {
-            console.log(e);
 
-            this.add.addDialogVisible = false;
-            this.add.dialogType = 0;
+        handleSelectionChange(val){
+            this.multipleSelection = val;
+            if(this.multipleSelection.length > 0){
+                this.disable = false;
+            }
+            else{
+                thi.disable = true;
+            }
         },
-        // 关闭新增或者编辑弹框
-        handleClose() {
-            this.add.addDialogVisible = false;
-            this.add.dialogType = 0;
-        }
+
+        handlePageSizeChange(){
+            this.initData();
+        },
+
+        handleCurrentPageChange(){
+            this.initData();
+        },
+
+    },
+    created(){
+        this.initData();
     }
 }
 </script>
-<style lang="less" scoped>
 
-</style>
 
 

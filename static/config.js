@@ -31,6 +31,9 @@ const config = {
 
     FtpTips_Interval: '',                                                // 单位毫秒，表示每50ms有一个打字输入效果，建议设置范围（20-100），可以不设置值，但必须给空字符串，不设置时，默认50ms
 
+    currentDictTIme:2000,                                                 //当前字典定时器间隔
+    splitDictTime:2000,                                                   //切分字典定时器间隔
+
     TaskModule: {                                                        // 任务管理模块中的相关配置
         Application_Config: {
             App_Config_Commad_Line: './sp -c/app/PwdSearch/PwdSearch.ini',        // 应用配置中默认的命令行内容，为空字符串时系统默认该字段为：'./sp -c/app/PwdSearch/PwdSearch.ini'
