@@ -460,6 +460,58 @@ const en = {
                         deleteClassifyTip:'Are you sure to delete this dictionary Classification',
                         clearClassifyTip:'Are you sure to delete the dictionary Classification',
                     }
+                },
+                dictUpload:{
+                    title:"Uploaded Dictionary File List",
+                    column:{
+                        ID:"ID",
+                        name:"Name",
+                        path:"Path",
+                        ope:"Operation",
+                        dictName:"Dictionary Name"
+                    },
+                    btn:{
+                        search:"Search",
+                        upload:"Upload Dictionary",
+                        deleteSel:"Delete Selection",
+                        split:"Split Dictionary",
+                        submit:"Submit",
+                        cancel:"Cancel",
+                        add:"Add",
+                        confirm:"Confirm",
+                        reset:"Reset"
+                    },
+                    splitTitle:"Submit Dictionary Segmentation",
+                    splitForm:{
+                        filename:"File Name",
+                        filepath:"File Path",
+                        dictAlign:"Dictionary Aliases",
+                        splitSize:"Segmentation size",
+                        classify:"Dictionary Classification",
+                    },
+                    tips:{
+                        splitTip:"System default segmentation is used when the value is 0",
+                        deleteTip:"Are you sure to delete this dictionary",
+                        uploadSuccess:"Upload Success",
+                        uploadFailure:"Upload Failed",
+                        cancelUpload:"Cancel upload successfully",
+                        deleteFail:"Failed to delete temporary files in server",
+                        closeTip:"This operation will give up uploading all files. Do you want to continue?",
+                        calcelClose:"The upload operation will continue"
+                    },
+                    uploadTitle:"Upload List",
+                    uploadColumn:{
+                        filename:"File Name",
+                        progress:"File Progress",
+                        status:"File Status",
+                        ope:"Operation"
+                    },
+                    uploadStatus:{
+                        wait:"Wait",
+                        upload:"Uploading",
+                        pause:"Pause",
+                        Success:"Success"
+                    }
                 }
             },
             home: {

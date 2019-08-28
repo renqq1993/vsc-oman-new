@@ -8,7 +8,10 @@ import store from '@/store'
 import App from './App'
 import router from './router'
 import '@/assets/icon/iconfont.css'   // 引入第三方图标
-import '@/assets/icon/iconfont1.css' 
+import '@/assets/icon/iconfont1.css'
+import uploader from 'vue-simple-uploader'
+import VueCookies from 'vue-cookies'//添加cookie
+import "@/utils/directives.js"//添加dialog拖拽功能 
 
 import config from '../static/config'
 
@@ -16,6 +19,8 @@ Vue.config.productionTip = false
 
 Vue.component(CollapseTransition.name, CollapseTransition)
 Vue.use(ElementUI)
+Vue.use(uploader)
+Vue.use(VueCookies)//添加cookie
 
 // 读取项目配置
 Vue.prototype.$config = config

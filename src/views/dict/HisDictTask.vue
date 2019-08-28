@@ -91,7 +91,7 @@ export default {
                     message:"加载历史字典成功",
                     status:1,
                     data:HistoryDict,
-                    total:2,
+                    total:6,
                 };
                 if (res.status == 1) {
                     this.loading = false;
@@ -99,11 +99,12 @@ export default {
                     this.tableData = res.data;		// 加载历史字典列表，填充表格数据
                     let num = 0;
                     if(this.multipleSelection.length > 0){
+                        let that = this;
                         this.multipleSelection.forEach(function(row){
-                            let selectedDict =  this.tableData.find(dict => dict.id == row.id);
-                            if(selectedDict != undefined){
+                            let selectedindex =  that.tableData.findIndex(dict => dict.id == row.id);
+                            if(selectedindex != undefined){
                                 num ++;
-                                this.$refs.multipleTable.toggleRowSelection(selectedDict);
+                                that.$refs.multipleTable.toggleRowSelection(that.tableData[selectedindex],true);
                             }
                         });
                         if(num == 0){

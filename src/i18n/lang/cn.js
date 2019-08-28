@@ -461,6 +461,58 @@ const cn = {
                         deleteClassifyTip:'是否确定删除该字典分类',
                         clearClassifyTip:'是否确定删除该字典分类',
                     }
+                },
+                dictUpload:{
+                    title:"已上传字典文件列表",
+                    uploadColumn:{
+                        ID:"ID",
+                        name:"名称",
+                        path:"路径",
+                        ope:"操作",
+                        dictName:"字典名称",
+                    },
+                    btn:{
+                        search:"搜索",
+                        upload:"上传字典",
+                        deleteSel:"删除选中",
+                        split:"切分字典",
+                        submit:"提交",
+                        cancel:"取消",
+                        add:"添加",
+                        confirm:"确定",
+                        reset:"重置"
+                    },
+                    splitTitle:"提交字典切分",
+                    splitForm:{
+                        filename:"文件名称",
+                        filepath:"文件路径",
+                        dictAlign:"字典别名",
+                        splitSize:"切分大小",
+                        classify:"字典分类",
+                    },
+                    tips:{
+                        splitTip:"值为0时采用系统默认值切分",
+                        deleteTip:"是否确定要删除选中的字典",
+                        uploadSuccess:"文件上传成功",
+                        uploadFailure:"文件上传失败",
+                        cancelUpload:"取消上传成功",
+                        deleteFail:"删除服务器内临时文件失败",
+                        closeTip:"此操作将会放弃上传所有文件, 是否继续?",
+                        calcelClose:"已取消停止上传操作！"
+                    },
+                    uploadTitle:"上传文件列表",
+                    uploadColumn:{
+                        filename:"文件名称",
+                        progress:"上传进度",
+                        status:"文件状态",
+                        ope:"操作"
+                    },
+                    uploadStatus:{
+                        wait:"等待上传",
+                        upload:"上传中",
+                        pause:"暂停",
+                        Success:"上传成功"
+                    }
                 }
             },
             home: {

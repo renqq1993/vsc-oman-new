@@ -4,7 +4,7 @@
         <el-card class="app-config-list-card" shadow="hover">
             <div slot="header" class="clearfix">
                 <p class="card-title-adjust">
-                    <i class="el-icon-new-icon-icon_renwujincheng"></i>
+                    <i class="el-icon-new-icon-qiefen"></i>
                     <span class="item-ml-5">{{ $t(prefix + 'title') }}</span>
                 </p>
                 <el-button-group class="item-right">
@@ -129,15 +129,12 @@ export default {
                     if(this.multipleSelection.length > 0){
                          let that = this;
                         this.multipleSelection.forEach(function(row){
-                            let selectedDict =  that.tableData.find(dict => dict.id == row.id);
-                            console.log(selectedDict);
-                            if(selectedDict != undefined){
-                                 console.log("if");
+                            let selectedIndex =  that.tableData.findIndex(dict => dict.id == row.id);
+                            if(selectedIndex != undefined){
                                 num ++;
-                                that.$refs.multipleTable.toggleRowSelection(selectedDict);
+                                that.$refs.multipleTable.toggleRowSelection(that.tableData[selectedIndex],true);
                             }
                         });
-                        console.log("num = " + num);
                         if(num == 0){
                             this.$nextTick(() => {
                                 this.$refs.multipleTable.clearSelection();
