@@ -180,7 +180,6 @@ export default {
                     cancelButtonText: this.$t(this.prefix + 'tips.cancel'),
                     type: 'warning'
                 }).then(async () => {
-                    console.log("then");
                     let deleteIDs  = [];
                     this.multipleSelection.forEach(function(row){
                         deleteIDs.push(row.ID);

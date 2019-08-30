@@ -464,7 +464,7 @@ const cn = {
                 },
                 dictUpload:{
                     title:"已上传字典文件列表",
-                    uploadColumn:{
+                    column:{
                         ID:"ID",
                         name:"名称",
                         path:"路径",
@@ -480,7 +480,11 @@ const cn = {
                         cancel:"取消",
                         add:"添加",
                         confirm:"确定",
-                        reset:"重置"
+                        reset:"重置",
+                        restore:"恢复上传",
+                        pause:"暂停上传",
+                        cancelUpload:"取消上传",
+                        close:"关闭"
                     },
                     splitTitle:"提交字典切分",
                     splitForm:{
@@ -491,14 +495,20 @@ const cn = {
                         classify:"字典分类",
                     },
                     tips:{
-                        splitTip:"值为0时采用系统默认值切分",
+                        alignTip:"请输入字典别名",
+                        splitTip:"提示：值为0时采用系统默认值切分",
+                        deleteFile:"切分完成后删除提交的字典文件",
                         deleteTip:"是否确定要删除选中的字典",
                         uploadSuccess:"文件上传成功",
                         uploadFailure:"文件上传失败",
                         cancelUpload:"取消上传成功",
                         deleteFail:"删除服务器内临时文件失败",
                         closeTip:"此操作将会放弃上传所有文件, 是否继续?",
-                        calcelClose:"已取消停止上传操作！"
+                        calcelClose:"已取消停止上传操作！",
+                        searchSuccess:"查询上传字典成功",
+                        warnTip:"友情提示：刷新或关闭浏览器将放弃上传所有文件",
+                        emptyTip:"请输入切分大小",
+                        numberTip:"切分大小必须为非负整数"
                     },
                     uploadTitle:"上传文件列表",
                     uploadColumn:{
@@ -512,6 +522,45 @@ const cn = {
                         upload:"上传中",
                         pause:"暂停",
                         Success:"上传成功"
+                    }
+                },
+                dictClass:{
+                    title:"字典分类统计",
+                    column:{
+                        name:"名称",
+                        ope:"操作",
+                    },
+                    btn:{
+                        delete:"删除",
+                        add:"新建",
+                        edit:"编辑",
+                        confirm:"确定",
+                        cancel:"取消",
+                    },
+                    addTitle:"字典分类列表",
+                    tips:{
+                        emptyTip:"请单击左边的字典分类树查看内容",
+                        deleteTip:"确定要删除该字典分类吗"
+                    }
+                },
+                CurDict:{
+                    title:"当前字典任务列表",
+                    column:{
+                        ID:"ID",
+                        direction:"字典目录",
+                        condition:"任务状态",
+                        progress:"任务进度",
+                        speed:"处理速度",
+                        filename:"字典文件名",
+                        align:"字典别名",
+                        filesize:"字典文件大小",
+                        splitSize:"切分大小",
+                        commitTime:"提交时间",
+                        ope:"操作"
+                    },
+                    btn:{
+                        delete:"删除",
+                        stop:"停止"
                     }
                 }
             },

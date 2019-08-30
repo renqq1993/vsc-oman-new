@@ -124,3 +124,11 @@ export const dictClassificationDetail = [
         ]
     }
 ]
+
+export const dictUpload = [
+    {
+         ID:1,
+         name:'test.text',
+         path:"D:\face\vsc-oman-new\src\components\dictionary\SplitDict\splitDictDetail.vue",
+     }
+ ]

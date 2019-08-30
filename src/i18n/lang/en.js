@@ -474,12 +474,16 @@ const en = {
                         search:"Search",
                         upload:"Upload Dictionary",
                         deleteSel:"Delete Selection",
-                        split:"Split Dictionary",
+                        split:"Dictionary Segmentation",
                         submit:"Submit",
                         cancel:"Cancel",
                         add:"Add",
                         confirm:"Confirm",
-                        reset:"Reset"
+                        reset:"Reset",
+                        restore:"Upload",
+                        pause:"Pause",
+                        cancelUpload:"Cancel",
+                        close:"Close"
                     },
                     splitTitle:"Submit Dictionary Segmentation",
                     splitForm:{
@@ -490,14 +494,20 @@ const en = {
                         classify:"Dictionary Classification",
                     },
                     tips:{
-                        splitTip:"System default segmentation is used when the value is 0",
+                        alignTip:"Please enter a dictionary alias",
+                        splitTip:"Tips:System default segmentation is used when the value is 0",
+                        deleteFile:"Delete submitted dictionary files after segmentation",
                         deleteTip:"Are you sure to delete this dictionary",
                         uploadSuccess:"Upload Success",
                         uploadFailure:"Upload Failed",
                         cancelUpload:"Cancel upload successfully",
                         deleteFail:"Failed to delete temporary files in server",
                         closeTip:"This operation will give up uploading all files. Do you want to continue?",
-                        calcelClose:"The upload operation will continue"
+                        calcelClose:"The upload operation will continue",
+                        searchSuccess:"Search upload dictionary successfully",
+                        warnTip:"Tip: Refreshing or closing the browser will give up uploading all files",
+                        emptyTip:"Please enter a segmentation size",
+                        numberTip:"Segmentation size must be non-negative integers"
                     },
                     uploadTitle:"Upload List",
                     uploadColumn:{
@@ -511,6 +521,45 @@ const en = {
                         upload:"Uploading",
                         pause:"Pause",
                         Success:"Success"
+                    }
+                },
+                dictClass:{
+                    title:"Dictionary Classification Statistics",
+                    column:{
+                        name:"Name",
+                        ope:"Operation",
+                    },
+                    btn:{
+                        delete:"Delete",
+                        add:"Add",
+                        edit:"Edit",
+                        confirm:"Confirm",
+                        cancel:"Cancel",
+                    },
+                    addTitle:"Dictionary Classification List",
+                    tips:{
+                        emptyTip:"Click the dictionary classification tree on the left to view the contents",
+                        deleteTip:"Are you sure to delete this dictionary classification"
+                    }
+                },
+                CurDict:{
+                    title:"Current Dictionary Task List",
+                    column:{
+                        ID:"ID",
+                        direction:"Dictionary Catalogue;",
+                        condition:"Dictionary Condition",
+                        progress:"Dictionary Progress",
+                        speed:"Processing Speed",
+                        filename:"Dictionary File Name",
+                        align:"Dictionary Alias",
+                        filesize:"Dictionary File Size",
+                        splitSize:"Segmentation Size",
+                        commitTime:"Submission Time",
+                        ope:"Operation"
+                    },
+                    btn:{
+                        delete:"Delete",
+                        stop:"Stop"
                     }
                 }
             },

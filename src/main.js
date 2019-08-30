@@ -9,6 +9,7 @@ import App from './App'
 import router from './router'
 import '@/assets/icon/iconfont.css'   // 引入第三方图标
 import '@/assets/icon/iconfont1.css'
+import '@/assets/icon/iconfont2.css'
 import uploader from 'vue-simple-uploader'
 import VueCookies from 'vue-cookies'//添加cookie
 import "@/utils/directives.js"//添加dialog拖拽功能 

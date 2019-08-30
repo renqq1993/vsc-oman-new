@@ -105,6 +105,21 @@ export const deleteSplitDict = data => fetch('/webapp/index.php/home/Operation/g
  */
 export const editSplitDict = data => fetch('/webapp/index.php/home/Operation/getHsOperation', data);
 
+/**
+ * 删除上传字典
+ */
+export const deleteUploadDict = data => fetch('/webapp/index.php/home/Operation/getHsOperation', data);
+
+/**
+ * 加载上传字典
+ */
+export const getUploadDict = data => fetch('/webapp/index.php/home/Operation/getHsOperation', data);
+
+/**
+ * 提交切分
+ */
+export const submitSplit = data => fetch('/webapp/index.php/home/Operation/getHsOperation', data);
+
 
 
 

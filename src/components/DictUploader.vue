@@ -16,10 +16,11 @@
     </div>
 </template>
 <script>
-import { ACCEPT_CONFIG } from "../assets/js/config"
-import Bus from "../assets/js/bus"
+import { ACCEPT_CONFIG } from "@/assets/js/config.js"
+import Bus from "@/assets/js/bus.js"
 import SparkMD5 from "spark-md5"
 import Vue from 'vue'
+import $ from 'jquery'
 
 export default {
     name: "DictUploader",

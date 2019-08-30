@@ -1,24 +1,24 @@
 <template>
-    <el-dialog title="上传文件列表" :visible="tabVision" :before-close="closeDialog" :close-on-click-modal="false" v-dialogDrag>
+    <el-dialog :title="$t(prefix + 'uploadTitle')" :visible="tabVision" :before-close="closeDialog" :close-on-click-modal="false" v-dialogDrag>
         <span slot="title">
-            <span class="tabTitle">上传文件列表</span>
+            <span class="tabTitle">{{$t(prefix + 'uploadTitle')}}</span>
             <a class="el-icon-minus" @click="tabVision=false"></a>
         </span>
-        <el-alert title="友情提示：刷新和关闭浏览器将放弃上传所有文件！" type="warning"  show-icon></el-alert>
+        <el-alert :title="$t(prefix + 'tips.warnTip')" type="warning"  show-icon></el-alert>
         <el-table max-height="300" :data="fileList" style="width: 100%">
-            <el-table-column property="file.name" label="文件名称" align="center" :show-overflow-tooltip="true"></el-table-column>
-            <el-table-column label="上传进度" align="center">
+            <el-table-column property="file.name" :label="$t(prefix + 'uploadColumn.filename')" align="center" :show-overflow-tooltip="true"></el-table-column>
+            <el-table-column :label="$t(prefix + 'uploadColumn.progress')" align="center">
                 <template property="percent" slot-scope="scope">
                     <el-progress :text-inside="true" :stroke-width="20" :percentage="scope.row.percent"></el-progress>
                 </template>
             </el-table-column>
-            <el-table-column label="文件状态" property="status" align="center"></el-table-column>
-            <el-table-column  label="操作" align="center">
+            <el-table-column :label="$t(prefix + 'uploadColumn.status')" property="status" align="center"></el-table-column>
+            <el-table-column  :label="$t(prefix + 'uploadColumn.ope')" align="center">
                 <template slot-scope="scope">
                     <p v-if="scope.row.percent != 100">
-                        <el-button plain type="primary" v-if="scope.row.status == '暂停中'" class="uploadSelfBtn" title="恢复上传" size="mini" icon="el-icon-vpn-play" @click="resume(scope.row)"></el-button>
-                        <el-button plain type="warning" v-else class="uploadSelfBtn" title="暂停上传" size="mini" icon="el-icon-vpn-pause" @click="stop(scope.row)"></el-button>
-                        <el-button plain type="danger" class="uploadSelfBtnSp" title="删除" size="small" icon="el-icon-close" @click="remove(scope.row)"></el-button>
+                        <el-button plain type="primary" v-if="scope.row.status == $t(prefix + 'uploadStatus.pause')" class="uploadSelfBtn" :title="$t(prefix + 'btn.restore')" size="mini" icon="el-icon-vpn-play" @click="resume(scope.row)"></el-button>
+                        <el-button plain type="warning" v-else class="uploadSelfBtn" :title="$t(prefix + 'btn.pause')" size="mini" icon="el-icon-vpn-pause" @click="stop(scope.row)"></el-button>
+                        <el-button plain type="danger"  class="uploadSelfBtn" :title="$t(prefix + 'btn.cancelUpload')" size="mini" icon="el-icon-close" @click="remove(scope.row)"></el-button>
                     </p>
                 </template>
             </el-table-column>
@@ -26,10 +26,11 @@
     </el-dialog>
 </template>
 <script>
-import Bus from "../assets/js/bus"
+import Bus from "@/assets/js/bus.js"
 import { mapMutations, mapState } from "vuex"
 import { delTempFileInfoForWeb } from '@/api/getData'
 import VueCookies from 'vue-cookies'
+import $ from 'jquery'
 
 export default {
     name: "UploadDialog",
@@ -341,5 +342,11 @@ export default {
         padding: 6.5px 12px !important;
         position: relative;
         top: 2px;
+    }
+    /deep/ .el-icon-vpn-play{
+        font-size: 12px;
+    }
+    /deep/ .el-icon-vpn-pause{
+        font-size: 12px;
     }
 </style>

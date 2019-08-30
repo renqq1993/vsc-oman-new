@@ -76,14 +76,20 @@
             },
             async confirm(){
                  this.loading = true;
+                 console.log(this.type);
                  if(this.targetList.length > 0){
                      try {
-                          if(type == "replace"){
+                          if(this.type == "replace"){
                                // const res = await  replaceDictClassification({
                             //     dictId: this.id, 
                             //     oldNodeId: this.oldID,
                             //     newNodeId:this.targetList[0]
                             // });	
+                          }
+                          else if(this.type == "split"){
+                              this.$emit("addClassification", this.targetList[0]);
+                               this.handleClose();
+                              return;
                           }
                           else{
                                  // const res = await  addDictClassification({
