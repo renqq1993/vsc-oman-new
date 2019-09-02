@@ -78,25 +78,25 @@
                  this.loading = true;
                  console.log(this.type);
                  if(this.targetList.length > 0){
-                     try {
-                          if(this.type == "replace"){
+                    try {
+                        if(this.type == "replace"){
                                // const res = await  replaceDictClassification({
                             //     dictId: this.id, 
                             //     oldNodeId: this.oldID,
                             //     newNodeId:this.targetList[0]
                             // });	
-                          }
-                          else if(this.type == "split"){
-                              this.$emit("addClassification", this.targetList[0]);
-                               this.handleClose();
-                              return;
-                          }
-                          else{
-                                 // const res = await  addDictClassification({
-                                //     dictId: this.id, 
-                                //     newNodeId:this.targetList[0]
-                                // });	
-                          }
+                        }
+                        else if(this.type == "split"){
+                            this.$emit("addClassification", this.targetList[0]);
+                            this.handleClose();
+                            return;
+                        }
+                        else{
+                                // const res = await  addDictClassification({
+                            //     dictId: this.id, 
+                            //     newNodeId:this.targetList[0]
+                            // });	
+                        }
                         console.log({
                              dictId: this.id, 
                              oldNodeId: this.oldID,
@@ -130,15 +130,15 @@
                         });
                     }
                  }
-                 else{
-                     this.$message({
-                                type: 'info',
-                                message: "请选择字典类型",
-                                duration: 2000,
-                                showClose: true
-                        });
-                 }
-                 this.handleClose();
+                else{
+                    this.$message({
+                            type: 'info',
+                            message: "请选择字典类型",
+                            duration: 2000,
+                            showClose: true
+                    });
+                }
+                this.handleClose();
             },
             cancel(){
                 this.handleClose();

@@ -56,6 +56,7 @@ export default {
             if (this.fileList.indexOf(data) == -1) {
                 this.fileList.push(data);
                 this.increaseCount();
+                console.log(this.$store.state.upload.uploadCount);
             }
             this.tabVision = true;
         });
@@ -95,13 +96,13 @@ export default {
                         type: response.type,
                     }
                     if(tree.type == "target"){
-                         this.targetList = this.$store.state.targetList;
+                         this.targetList = this.$store.state.upload.targetList;
                          if (this.targetList.indexOf(tree) == -1) {
                             this.targetList.push(tree);
                          }
                     }
                     else{
-                        this.dictList = this.$store.state.dictList;
+                        this.dictList = this.$store.state.upload.dictList;
                          if (this.dictList.indexOf(tree) == -1) {
                             this.dictList.push(tree);
                          }
@@ -140,12 +141,14 @@ export default {
         window.addEventListener('beforeunload', e => this.beforeunloadHandler(e))
     },
     methods: {
-        ...mapMutations(["setCount","decreaseCount","increaseCount"]),
+          ...mapMutations('upload', ['decreaseCount','increaseCount']),
+        //暂停上传
         stop(data) {
             let file = data.file;
             file.pause();
             data.status = this.$t(this.prefix + 'uploadStatus.pause');
         },
+        //继续上传
         resume(data) {
             let file = data.file;
             file.resume();
@@ -153,31 +156,31 @@ export default {
         },
         //取消上传时关闭服务器临时文件
         async delTmpFile_remove(requestData){
-             let response = await delTempFileInfoForWeb(requestData);
+            let response = await delTempFileInfoForWeb(requestData);
                if(response.status == 1){
-                this.$message({
-                    type: 'success',
-                    message: this.$t(this.prefix + 'tips.cancelUpload'),
-                    duration: 2000,
-                    customClass: 'message_zIndex',
-                    showClose: true
-                });
-            }
-            else{
-                this.$message({
-                    type: 'error',
-                    message: this.$t(this.prefix + 'tips.deleteFail') + response.message,
-                    duration: 2000,
-                    customClass: 'message_zIndex',
-                    showClose: true
-                });
-            }
+                    this.$message({
+                        type: 'success',
+                        message: this.$t(this.prefix + 'tips.cancelUpload'),
+                        duration: 2000,
+                        customClass: 'message_zIndex',
+                        showClose: true
+                    });
+                }
+                else{
+                    this.$message({
+                        type: 'error',
+                        message: this.$t(this.prefix + 'tips.deleteFail') + response.message,
+                        duration: 2000,
+                        customClass: 'message_zIndex',
+                        showClose: true
+                    });
+                }
         },
         //关闭弹框时删除服务器中临时文件
         async delTmpFile_close(deleteList){
-             let identifierTargetArr = [];
-             let identifierDictArr = [];
-             deleteList.forEach(item => {
+            let identifierTargetArr = [];
+            let identifierDictArr = [];
+            deleteList.forEach(item => {
                 if (item.percent != 100 && item.fileType == "target") {
                     identifierTargetArr.push(item.file.uniqueIdentifier);
                 }
@@ -237,6 +240,7 @@ export default {
                     that.delTmpFile_remove(requestData);
                 },500);
         },
+        //关闭弹框之前的准备工作
         closeTab(flag) {
             if (this.fileList.length > 0 && flag) {
 
@@ -251,11 +255,12 @@ export default {
             this.setCount(0);
             this.tabVision = false;
         },
+
+        //关闭弹框
         closeDialog() {
             let that = this;
-
             if (this.fileList.length > 0) {
-                this.$confirm(this.$t(this.prefix + 'tips.closeTip'), '提示', {
+                this.$confirm(this.$t(this.prefix + 'tips.closeTip'), this.$t(this.prefix + 'tips.title'), {
 					confirmButtonText: this.$t(this.prefix + 'btn.confirm'),
 					cancelButtonText: this.$t(this.prefix + 'btn.cancel'),
 					type: 'warning'
@@ -321,7 +326,7 @@ export default {
 </script>
 <style lang="less" scoped>
     .el-icon-minus {
-        top: 16px;
+        top: 23px;
         position: absolute;
         right: 60px;
         padding: 0;

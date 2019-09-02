@@ -1,9 +1,9 @@
 <template>
     <el-menu class="navbar nav-outer" mode="horizontal"> 
         <!-- 查看全局上传数据，如目标文件、字典文件等(about upload components, such as target files or dictionary files) -->
-        <div class="uploadBtn nav-inner-item" :title="$t('app.headerBtn.uploadListTips')">
-            <el-badge value="1">
-                <i class="el-icon-upload"></i>
+        <div class="uploadBtn nav-inner-item" :title="$t('app.headerBtn.uploadListTips')" @click="showUpload">
+            <el-badge :value="uploadCount" :hidden="hidden">
+                <i class="el-icon-upload" ></i>
             </el-badge>
         </div> 
         <!-- 锁屏 -->
@@ -47,11 +47,14 @@
 import Vue from 'vue'
 import LockScreen from '@/components/smallFunc/lockPage/LockScreen'
 import { mapActions, mapMutations } from 'vuex'
+import Bus from '@/assets/js/bus'
 export default {
     name: 'NavBar',
     data() {
         return {
-            avatarImg: require("@/assets/logo.png")
+            avatarImg: require("@/assets/logo.png"),
+            //隐藏上传按钮上的数字
+            hidden:true,
         }
     },
     components: {
@@ -66,9 +69,21 @@ export default {
             document.title = Vue.prototype.$config.SYS_TITLE_En;
         }
     },
+    computed:{
+        //监听上传按钮上的数字
+          uploadCount:function(){
+                if(this.$store.state.upload.uploadCount > 0){
+                    this.hidden = false;
+                    return this.$store.state.upload.uploadCount;
+                }
+                else{
+                    this.hidden = true;
+                }
+            }
+    },
     methods: {
         ...mapActions('user', ['handleLogOut']),
-        ...mapMutations('user', ['clearLock', 'setUserName']),
+        ...mapMutations('user', ['clearLock', 'setUserName'],'upload'),
         handleLangChange(command) {     // 切换语言
 
             if (this.$i18n.locale === command) {
@@ -135,7 +150,11 @@ export default {
                     });          
                 });
             } 
-        }
+        },
+        // 显示上传进度弹框
+        showUpload(){
+            Bus.$emit('showUpload');
+        },
     }
 }
 </script>

@@ -454,6 +454,7 @@ const cn = {
                         mergeDict:'合并字典'
                     },
                     tips:{
+                        title:"提示",
                         mergeTip:'合并后，源字典将合并到目的字典中，并且源字典将被删除',
                         deleteTip:'是否确定删除该字典',
                         selectTip:"请选择两条字典数据进行合并",
@@ -495,6 +496,7 @@ const cn = {
                         classify:"字典分类",
                     },
                     tips:{
+                        title:"提示",
                         alignTip:"请输入字典别名",
                         splitTip:"提示：值为0时采用系统默认值切分",
                         deleteFile:"切分完成后删除提交的字典文件",
@@ -508,7 +510,8 @@ const cn = {
                         searchSuccess:"查询上传字典成功",
                         warnTip:"友情提示：刷新或关闭浏览器将放弃上传所有文件",
                         emptyTip:"请输入切分大小",
-                        numberTip:"切分大小必须为非负整数"
+                        numberTip:"切分大小必须为非负整数",
+                        formTip:"提交内容不符合规范"
                     },
                     uploadTitle:"上传文件列表",
                     uploadColumn:{
@@ -537,15 +540,17 @@ const cn = {
                         confirm:"确定",
                         cancel:"取消",
                     },
-                    addTitle:"字典分类列表",
+                    addTitle:"字典分类名称",
                     tips:{
                         emptyTip:"请单击左边的字典分类树查看内容",
-                        deleteTip:"确定要删除该字典分类吗"
+                        deleteTip:"确定要删除该字典分类吗",
+                        tipTitle:"提示",
+                        cancelTip:"已取消删除操作"
                     }
                 },
                 CurDict:{
                     title:"当前字典任务列表",
-                    column:{
+                    columns:{
                         ID:"ID",
                         direction:"字典目录",
                         condition:"任务状态",
@@ -560,7 +565,23 @@ const cn = {
                     },
                     btn:{
                         delete:"删除",
-                        stop:"停止"
+                        stop:"停止",
+                        confirm:"确定",
+                        cancel:"取消"
+                    },
+                    tips:{
+                        deleteTip:"确定要删除该字典任务吗？",
+                        stopTip:"确定要停止该字典任务吗？",
+                        title:"提示",
+                        deleteSuccess:"删除字典任务成功",
+                        stopSuccess:"停止字典任务成功",
+                    },
+                    status:{
+                        wait:"待执行",
+                        process:"正在执行",
+                        success:"执行成功",
+                        failure:"执行失败",
+                        delete:"被删除"
                     }
                 }
             },

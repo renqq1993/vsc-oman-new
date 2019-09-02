@@ -6,6 +6,12 @@
 import {dictClassificationDetail} from '@/mock/mock.js'
 export default {
     name:"ClassificationTree",
+    props:{
+        reset:{
+            type:Boolean,
+            default:false,
+        }
+    },
     data(){
         return {
             data:[],
@@ -15,10 +21,18 @@ export default {
             }
         }
     },
+    watch:{
+        reset(value){
+            if(value){
+                console.log(value);
+                this.init();
+                this.$emit("handleReset",false);
+            }
+        }
+    },
     methods:{
         //点击树节点触发
         handleNodeClick(data) {
-            console.log(data);
             this.$emit("nodeClick", data);
         },
         init(){
@@ -30,7 +44,7 @@ export default {
                     status:1,
                 };
                 if (res.status == 1) {
-                    this.data = dictClassificationDetail;
+                    this.data = res.data;
                     this.$message({
                         type: 'success',
                         message: res.message,

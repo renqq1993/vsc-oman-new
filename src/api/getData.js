@@ -120,6 +120,30 @@ export const getUploadDict = data => fetch('/webapp/index.php/home/Operation/get
  */
 export const submitSplit = data => fetch('/webapp/index.php/home/Operation/getHsOperation', data);
 
+/**
+ * 添加字典分类
+ */
+export const addClassification = data => fetch('/webapp/index.php/home/Operation/getHsOperation', data);
+
+/**
+ * 修改字典分类
+ */
+export const editClassification = data => fetch('/webapp/index.php/home/Operation/getHsOperation', data);
+
+/**
+ * 获取当前字典
+ */
+export const getCurDictTask = data => fetch('/webapp/index.php/home/Operation/getHsOperation', data);
+
+/**
+ * 停止当前字典任务
+ */
+export const stopCurDictTask = data => fetch('/webapp/index.php/home/Operation/getHsOperation', data);
+
+/**
+ * 删除当前字典任务
+ */
+export const deleteCurDictTask = data => fetch('/webapp/index.php/home/Operation/getHsOperation', data);
 
 
 

@@ -453,6 +453,7 @@ const en = {
                         mergeDict:'Merge Dictionary'
                     },
                     tips:{
+                        title:"Tips",
                         mergeTip:'After merging, the source dictionary will be merged into the destination dictionary and deleted.',
                         deleteTip:'Are you sure to delete this dictionary',
                         selectTip:'Please select two dictionary data to merge',
@@ -494,7 +495,8 @@ const en = {
                         classify:"Dictionary Classification",
                     },
                     tips:{
-                        alignTip:"Please enter a dictionary alias",
+                        title:"Tips",
+                        alignTip:"Please input a dictionary alias",
                         splitTip:"Tips:System default segmentation is used when the value is 0",
                         deleteFile:"Delete submitted dictionary files after segmentation",
                         deleteTip:"Are you sure to delete this dictionary",
@@ -507,7 +509,8 @@ const en = {
                         searchSuccess:"Search upload dictionary successfully",
                         warnTip:"Tip: Refreshing or closing the browser will give up uploading all files",
                         emptyTip:"Please enter a segmentation size",
-                        numberTip:"Segmentation size must be non-negative integers"
+                        numberTip:"Segmentation size must be non-negative integers",
+                        formTip:"Submitted content does not conform to specifications"
                     },
                     uploadTitle:"Upload List",
                     uploadColumn:{
@@ -536,17 +539,19 @@ const en = {
                         confirm:"Confirm",
                         cancel:"Cancel",
                     },
-                    addTitle:"Dictionary Classification List",
+                    addTitle:"Dictionary Classification Name",
                     tips:{
                         emptyTip:"Click the dictionary classification tree on the left to view the contents",
-                        deleteTip:"Are you sure to delete this dictionary classification"
+                        deleteTip:"Are you sure to delete this dictionary classification",
+                        tipTitle:"Tips",
+                        cancelTip:"Canceled deletion operation"
                     }
                 },
                 CurDict:{
                     title:"Current Dictionary Task List",
-                    column:{
+                    columns:{
                         ID:"ID",
-                        direction:"Dictionary Catalogue;",
+                        direction:"Dictionary Catalogue",
                         condition:"Dictionary Condition",
                         progress:"Dictionary Progress",
                         speed:"Processing Speed",
@@ -559,7 +564,23 @@ const en = {
                     },
                     btn:{
                         delete:"Delete",
-                        stop:"Stop"
+                        stop:"Stop",
+                        confirm:"Confirm",
+                        cancel:"Cancel",
+                    },
+                    tips:{
+                        deleteTip:"Are you sure to delete this current dictionary task?",
+                        stopTip:"Are you sure to stop this current dictionary task?",
+                        title:"Tips",
+                        deleteSuccess:"Delete current dictionary Task Successful",
+                        stopSuccess:"Stop current dictionary Task Successful",
+                    },
+                    status:{
+                        wait:"Wait",
+                        process:"Performing",
+                        success:"Success",
+                        failure:"Failure",
+                        delete:"Deleted"
                     }
                 }
             },

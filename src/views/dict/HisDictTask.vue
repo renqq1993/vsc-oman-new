@@ -1,5 +1,5 @@
 <template>
-    <div class="app-config-main-wrapper">
+    <div class="cur-dict-main-wrapper">
         <!-- 历史字典任务列表 -->
         <el-card class="app-config-list-card" shadow="hover">
             <div slot="header" class="clearfix">
@@ -7,13 +7,9 @@
                     <i class="el-icon-new-icon-icon_renwujincheng"></i>
                     <span class="item-ml-5">{{ $t(prefix + 'title') }}</span>
                 </p>
-                <el-button-group class="item-right">
-                    <el-button @click="handleDeleteMulti" type="danger" :disabled="disable" icon="el-icon-delete"  size="mini" :title="$t( prefix + 'btn.deleteSelection')"></el-button>
-                </el-button-group>
             </div>
-            <div class="app-config-main clear" v-loading="loading" :element-loading-text="$t('app.table.loading')" style="width: 100%" element-loading-spinner="el-icon-loading" element-loading-background="rgba(0, 0, 0, 0.8)">
+            <div class="cur-dict-main clear" v-loading="loading" :element-loading-text="$t('app.table.loading')" style="width: 100%" element-loading-spinner="el-icon-loading" element-loading-background="rgba(0, 0, 0, 0.8)">
                 <el-table :data="tableData" ref="multipleTable" border @selection-change="handleSelectionChange" style="width: 100%">
-                    <el-table-column type="selection" width="50" align="center" fixed></el-table-column>
                     <el-table-column prop="ID" fixed :label="$t( prefix + 'columns.ID')" width="50" align="center" show-overflow-tooltip>
                     </el-table-column>
                     <el-table-column prop="dictMenu" fixed :label="$t(prefix + 'columns.dictMenu')" width="200" align="center" show-overflow-tooltip>

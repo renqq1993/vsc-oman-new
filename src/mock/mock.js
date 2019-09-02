@@ -125,6 +125,70 @@ export const dictClassificationDetail = [
     }
 ]
 
+export const curDictTask=[
+    {
+        ID:1,
+        direction:"/api/getData",
+        condition:1,
+        progress:70,
+        speed:60,
+        filename:"test1",
+        align:111,
+        filesize:"1000Kb",
+        splitSize:12,
+        commitTime:"2019-1-19 23:23:23",
+    },
+    {
+        ID:2,
+        direction:"/api/getData",
+        condition:2,
+        progress:70,
+        speed:60,
+        filename:"test1",
+        align:111,
+        filesize:"1000Kb",
+        splitSize:12,
+        commitTime:"2019-1-19 23:23:23",
+    },
+    {
+        ID:3,
+        direction:"/api/getData",
+        condition:0,
+        progress:70,
+        speed:60,
+        filename:"test1",
+        align:111,
+        filesize:"1000Kb",
+        splitSize:12,
+        commitTime:"2019-1-19 23:23:23",
+    },
+    {
+        ID:4,
+        direction:"/api/getData",
+        condition:3,
+        progress:70,
+        speed:60,
+        filename:"test1",
+        align:111,
+        filesize:"1000Kb",
+        splitSize:12,
+        commitTime:"2019-1-19 23:23:23",
+    },
+    {
+        ID:5,
+        direction:"/api/getData",
+        condition:4,
+        progress:70,
+        speed:60,
+        filename:"test1",
+        align:111,
+        filesize:"1000Kb",
+        splitSize:12,
+        commitTime:"2019-1-19 23:23:23",
+    },
+
+]
+
 export const dictUpload = [
     {
          ID:1,

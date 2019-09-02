@@ -79,7 +79,7 @@ export default {
                 type: "error"
             });
         },
-          onFileSuccess(rootFile, file, response, chunk) {
+        onFileSuccess(rootFile, file, response, chunk) {
             let res = JSON.parse(response);
             if(res.status == 1){
                 let data = { identifier:res.data.identifier, filename: file.file.name, name:file.file.name, totalChunks:file.chunks.length};
@@ -98,10 +98,10 @@ export default {
                     type: "error"
                 });
             }
-         },
+        },
          //大文件上传合并
-         async mergeResponse(data) {
-             let requestConfig = {
+        async mergeResponse(data) {
+            let requestConfig = {
                 credentials: 'include',
                 method: "POST",
                 headers: {
@@ -114,22 +114,22 @@ export default {
                 body:JSON.stringify(data),
             }
             try {
-                    const response = await fetch(Vue.prototype.BASE_URL + "/webapp/index.php/home/DataService/mergeUploadFile", requestConfig);
-                    const responseJson = await response.json();
-                    if (response.status == 200) {
-                         let responseData = {...responseJson.data, type:"dict"}
-                        Bus.$emit("fileSuccess", responseData);
-                    } 
-                    else {
-                           throw new Error(error) 
-                    }
-                } catch (error) {
-                     this.$message({
-                                message: this.$t(this.prefix + 'tips.uploadFailure'),
-                                type: "error"
-                            });
-                   
+                const response = await fetch(Vue.prototype.BASE_URL + "/webapp/index.php/home/DataService/mergeUploadFile", requestConfig);
+                const responseJson = await response.json();
+                if (response.status == 200) {
+                        let responseData = {...responseJson.data, type:"dict"}
+                    Bus.$emit("fileSuccess", responseData);
+                } 
+                else {
+                    throw new Error(error) 
                 }
+            } catch (error) {
+                this.$message({
+                        message: this.$t(this.prefix + 'tips.uploadFailure'),
+                        type: "error"
+                });
+                
+            }
         },
         /**
          * 计算md5,实现断点续传及妙传

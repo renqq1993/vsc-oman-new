@@ -19,7 +19,7 @@
         <el-card class="dict-upload-list-card" shadow="hover">
             <div slot="header" class="clearfix">
                 <p class="card-title-adjust">
-                    <i class="el-icon-new-icon-yingyongpeizhi"></i>
+                    <i class="el-icon-upload2"></i>
                     <span class="item-ml-5">{{ $t( prefix + 'title') }}</span>
                 </p>
                 <el-button-group class="item-right">
@@ -64,7 +64,7 @@ import { deleteUploadDict, getUploadDict} from '@/api/getData'
 import {dictUpload} from '@/mock/mock.js'
 import SplitDialog  from '@/components/dictionary/DictUpload/SplitDialog'
 export default {
-    name: 'AppConfig',
+    name: 'DictUpload',
     data() {
         return {
             prefix:"app.table.dictionary.dictUpload.",
@@ -79,7 +79,7 @@ export default {
             multipleSelection: [],
             deleteDisabled: true,
             tableData:[],
-            searchMsg:this.$t(this.prefix + 'tips.searchSuccess'),
+            searchMsg:this.$t('app.table.dictionary.dictUpload.tips.searchSuccess'),
             splitVision:false,
             splitDict:{}
         }
@@ -111,7 +111,8 @@ export default {
                     this.loading = false;
                     this.total = res.total;
                     this.tableData = res.data;		// 加载历史字典列表，填充表格数据
-                    if(type == "search"){
+                    if(type == "search" || type == "delete"){
+                        this.formInline.name = "";
                         this.$refs.multipleTable.clearSelection();
                     }
                     else{
@@ -131,7 +132,7 @@ export default {
                 }
             } catch(err) {
                 this.loading = false;
-
+                this.formInline.name = "";
                 this.$message({
                     type: 'error',
                     message: err.message,
@@ -171,7 +172,7 @@ export default {
            this.multipleSelection.forEach(dict =>{
                deleteRow.push(dict.id);
            });
-            this.$confirm(this.$t(this.prefix + 'tips.deleteTip') , '提示', {
+            this.$confirm(this.$t(this.prefix + 'tips.deleteTip') , this.$t(this.prefix + 'tips.title'), {
 					confirmButtonText: this.$t(this.prefix + 'btn.confirm'),
 					cancelButtonText: this.$t(this.prefix + 'btn.cancel'),
 					type: 'warning'
@@ -183,13 +184,7 @@ export default {
                                 status:1,
                             };
                             if (res.status == 1) {
-                                this.init();
-                                this.$message({
-                                    type: 'success',
-                                    message: res.message,
-                                    duration: 2000,
-                                    showClose: true
-                                });
+                                this.init(res.message, 'delete');
                             } else {
                                 throw new Error(res.message);
                             }

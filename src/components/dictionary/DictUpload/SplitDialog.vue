@@ -59,24 +59,30 @@ export default {
     data(){
         var checksize = (rule, value, callback) => {
             if (!value) {
-                $(".tips").hide()
-                return callback(new Error(this.$t('app.table.dictionary.dictUpload.tips.emptyTip')));
+                this.ruleForm.size = 0;
+                $(".tips").show();
+                return callback();
             }
-            setTimeout(() => {
-                let pattern = /^\d+$/;
-                if(!pattern.test(value)){
-                    $(".tips").hide()
-                    return callback(new Error(this.$t('app.table.dictionary.dictUpload.tips.numberTip')));
-                }
-                else{
-                    $(".tips").show();
-                    return callback();
-                } 
-            }, 50);
+            else{
+                setTimeout(() => {
+                    let pattern = /^\d+$/;
+                    if(!pattern.test(value)){
+                        $(".tips").hide()
+                        return callback(new Error(this.$t('app.table.dictionary.dictUpload.tips.numberTip')));
+                    }
+                    else{
+                        $(".tips").show();
+                        return callback();
+                    } 
+                }, 50);
+            }
         };
         var checkAlign = (rule, value, callback) =>{
              if (!value) {
                 return callback(new Error(this.$t('app.table.dictionary.dictUpload.tips.alignTip')));
+            }
+            else{
+                return callback();
             }
         }
         return {
@@ -110,6 +116,7 @@ export default {
         }
     },
     methods:{
+        //关闭弹框
         handleClose(){
             this.$emit("dialogClose", false);
         }, 
@@ -129,12 +136,11 @@ export default {
             let that = this;
             this.$refs["ruleForm"].validate((valid) => {
                 if (valid) {
-                     try {
-                        // let res = await submitSplit(data);
+                    try {
+                        // let res = await submitSplit(submitData);
                         let res = {
-                            message:"删除指定历史字典成功",
+                            message:"切分历史字典成功",
                             status:1,
-                            data:HistoryDict
                         };
                         if (res.status == 1) {
                             that.handleClose();
@@ -151,7 +157,12 @@ export default {
                         that.handleClose();
                     }    
                 } else {
-                    console.log('error submit!!');
+                    this.$message({
+                        type: 'error',
+                        message: this.$t(this.prefix + 'tips.formTip'),
+                        duration: 2000,
+                        showClose: true
+                    });
                     return false;
                 }
             });
@@ -160,9 +171,11 @@ export default {
         handleDialogClose(value){
             this.classifyVision = value;
         },
-
+        //添加字典分类
         addClassify(value){
-            this.tags.push(value);
+            if(this.tags.indexOf(value) == -1){
+                 this.tags.push(value);
+            }
         }
     },
     components:{

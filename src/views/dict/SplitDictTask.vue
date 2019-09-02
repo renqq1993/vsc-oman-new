@@ -89,9 +89,13 @@ export default {
             loading:false,
             multipleSelection: [],
             mergeList:[],
+            //合并弹框可见性判断
             mergeDialogVision:false,
+            //切分字典详情弹框可见性判断
             splitDialogVision:false,
+            //字典分类详情弹框可见性判断
             classifyDialogVision:false,
+            //修改字典详情弹框可见性判断
             editDialogVision:false,
             splitDictID:0,
             classifyID:0,
@@ -99,7 +103,7 @@ export default {
             editDictalign:"",
             //定时器返回
             timer:0,
-            //是否显示初始化结果
+            //是否显示加载成功message
             flag:false,
             // 禁用合并按钮
             disabled:true
@@ -107,7 +111,6 @@ export default {
     },
     methods:{
         init(message){
-           console.log("init");
            this.loading = true;
             try {
                 // const res = await  getHisDictLists({
@@ -125,6 +128,7 @@ export default {
                     this.loading = false;
                     this.total = res.total;
                     this.tableData = res.data;		// 加载历史字典列表，填充表格数据
+                    //处理翻页后多选框问题
                     let num = 0;
                     if(this.multipleSelection.length > 0){
                          let that = this;
@@ -148,7 +152,7 @@ export default {
                     }
 
                     this.num ++;
-
+                    //判断是否显示message
                     if(this.flag){
                         if(message == undefined){
                             message = res.message;
@@ -176,17 +180,19 @@ export default {
                 });
             }
         },
+        //处理每页显示个数变化
         handlePageSizeChange(val){
             this.pageSize = val;
             this.init();
         },
+        //处理页数变化
         handleCurrentPageChange(val){
             this.currentPage = val;
             this.init();
         },
         //删除字典
         handleDelete(val){
-            this.$confirm(this.$t(this.prefix + 'tips.deleteTip') , '提示', {
+            this.$confirm(this.$t(this.prefix + 'tips.deleteTip') , this.$t(this.prefix + 'tips.title') , {
 					confirmButtonText: this.$t(this.prefix + 'btn.confirm'),
 					cancelButtonText: this.$t(this.prefix + 'btn.cancel'),
 					type: 'warning'
@@ -284,6 +290,7 @@ export default {
         }
         
     },
+    //创建组件时开启定时器
     created(){
         let that = this;
         this.flag = true;
@@ -291,7 +298,6 @@ export default {
         this.timer = window.setInterval(function fn(){
            that.init();
         },this.$config.splitDictTime);
-       console.log(this.timer);
     },
     destroyed(){
         window.clearInterval(this.timer);
