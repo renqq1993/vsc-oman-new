@@ -391,7 +391,7 @@ const en = {
                         deleteSelection:'Delete Selection'
                     },
                     tips:{
-                        title:'Prompt',
+                        title:'Tips',
                         deleteSelection:'Are you sure to delete all selected dictionary',
                         delete:'Are you sure to delete this dictionary',
                         confirm:'confirm',
@@ -460,6 +460,7 @@ const en = {
                         emptyTip:"Click on the tree node on the left to select the dictionary classification",
                         deleteClassifyTip:'Are you sure to delete this dictionary Classification',
                         clearClassifyTip:'Are you sure to delete the dictionary Classification',
+                        chooseClassifyTip:"Please select dictionary classification",
                     }
                 },
                 dictUpload:{

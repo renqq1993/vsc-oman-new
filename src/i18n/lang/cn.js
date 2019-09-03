@@ -430,7 +430,7 @@ const cn = {
                         createTime:'创建时间',
                     },
                     dictClassificationColumn:{
-                        name:'分类名称',
+                        name:'字典分类名称',
                         operation:'操作'
                     },
                     mergeColumn:{
@@ -461,6 +461,7 @@ const cn = {
                         emptyTip:"请点击左边的树节点选择字典分类",
                         deleteClassifyTip:'是否确定删除该字典分类',
                         clearClassifyTip:'是否确定删除该字典分类',
+                        chooseClassifyTip:"请选择字典类型"
                     }
                 },
                 dictUpload:{

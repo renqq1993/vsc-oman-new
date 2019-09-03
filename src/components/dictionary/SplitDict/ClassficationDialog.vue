@@ -1,6 +1,6 @@
 <template>
     <!-- 全部字典分类弹框 -->
-    <el-dialog :title="$t(prefix + 'dictClassificationTable')" width="50%" :visible.sync="classifiedVisiable" :close-on-click-modal="false"  @close="handleClose">
+    <el-dialog :title="$t(prefix + 'dictClassificationTable')" width="50%" :visible.sync="classifiedVisiable" :close-on-click-modal="false"  @close="handleClose(false)">
         <div class="vsc-target-choose">
             <el-alert :title="$t(prefix + 'tips.emptyTip')" type="success"></el-alert>
             <el-row>
@@ -12,7 +12,7 @@
                 <el-col :span="11" :offset="2">
                     <el-row>
                         <el-table border ref="simpleTable" :data="targetList" tooltip-effect="dark" style="margin-top: 10px; width: 100%;" height="300">
-                            <el-table-column prop="label" label="名称" align="center" show-overflow-tooltip>
+                            <el-table-column prop="label" :label="$t(prefix + 'dictClassificationColumn.name')" align="center" show-overflow-tooltip>
                             </el-table-column>
                         </el-table>
                     </el-row>
@@ -20,8 +20,8 @@
             </el-row>
         </div>
         <div slot="footer" class="dialog-footer">
-            <el-button size="small"  @click="handleClose()">关闭</el-button>
-             <el-button size="small" type="primary" @click="confirm()">确定</el-button>
+            <el-button size="small"  @click="handleClose(false)">{{$t(prefix + 'btn.cancel')}}</el-button>
+             <el-button size="small" type="primary" @click="confirm()">{{$t(prefix + 'btn.confirm')}}</el-button>
         </div>
     </el-dialog>
 </template>
@@ -67,18 +67,24 @@
             }
         },
         methods:{
-            handleClose(){
-                this.$emit("TreeNodeClose", false);
+            //关闭弹框
+            // reset:判断关闭弹框后是否需要刷新字典分类列表
+            //true刷新，false:不刷新
+            handleClose(reset){
+                this.$emit("TreeNodeClose", {open:false, reset:reset});
             },
             //点击树节点触发
             handleClick(value){
                 this.targetList = [value];
             },
+
+            //确定按钮触发
             async confirm(){
-                 this.loading = true;
-                 console.log(this.type);
-                 if(this.targetList.length > 0){
+                this.loading = true;
+                console.log(this.type);
+                if(this.targetList.length > 0){
                     try {
+                        //替换字典分类
                         if(this.type == "replace"){
                                // const res = await  replaceDictClassification({
                             //     dictId: this.id, 
@@ -86,11 +92,13 @@
                             //     newNodeId:this.targetList[0]
                             // });	
                         }
+                        //字典上传中，切分字典弹框的添加字典分类
                         else if(this.type == "split"){
                             this.$emit("addClassification", this.targetList[0]);
-                            this.handleClose();
+                            this.handleClose(false);
                             return;
                         }
+                        //添加字典分类
                         else{
                                 // const res = await  addDictClassification({
                             //     dictId: this.id, 
@@ -116,33 +124,30 @@
                                 duration: 2000,
                                 showClose: true
                             });
+                            this.handleClose(true);
                         } else {
                             throw new Error(res.message);
                         }
                     } catch(err) {
                         this.loading = false;
-
                         this.$message({
                             type: 'error',
                             message: err.message,
                             duration: 2000,
                             showClose: true
                         });
+                        this.handleClose(false);
                     }
                  }
                 else{
                     this.$message({
                             type: 'info',
-                            message: "请选择字典类型",
+                            message: this.$t(this.prefix + 'tips.chooseClassifyTip'),
                             duration: 2000,
                             showClose: true
                     });
                 }
-                this.handleClose();
             },
-            cancel(){
-                this.handleClose();
-            }
         },
         components:{
             ClassificationTree

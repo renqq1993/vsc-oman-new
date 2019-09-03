@@ -2,7 +2,7 @@
     <div>
         <!-- 提交字典切分 -->
         <el-dialog :title="$t(prefix + 'splitTitle')" :visible.sync="splitDialog" :close-on-click-modal="false" width="50%" @close="handleClose">
-            <el-form :model="ruleForm"  ref="ruleForm" :rules="rules" label-width="180px" class="demo-ruleForm">
+            <el-form :model="ruleForm"  ref="ruleForm" :rules="rules" :label-width="labelWidth" class="demo-ruleForm">
                 <el-form-item :label="$t(prefix + 'splitForm.filename')" prop="name">
                    <span>{{dict.name}}</span>
                 </el-form-item>
@@ -57,6 +57,7 @@ export default {
         }
     },
     data(){
+        //切分大小表单验证
         var checksize = (rule, value, callback) => {
             if (!value) {
                 this.ruleForm.size = 0;
@@ -77,6 +78,7 @@ export default {
                 }, 50);
             }
         };
+        //字典别名表单验证
         var checkAlign = (rule, value, callback) =>{
              if (!value) {
                 return callback(new Error(this.$t('app.table.dictionary.dictUpload.tips.alignTip')));
@@ -102,12 +104,25 @@ export default {
                 size:[
                     { validator: checksize, trigger: 'blur' }
                 ]
-            }
+            },
+            labelWidth:"0px",
         };
     },
     computed:{
         splitDialog:{
             get(){
+                if(this.visibleDialog){
+                    if(this.$i18n.locale == "en"){
+                        this.labelWidth = "175px";
+                    }
+                    else{
+                        this.labelWidth = "100px";
+                    };
+                    this.tags = [];
+                    this.$nextTick(() =>{
+                         this.$refs['ruleForm'].resetFields();
+                    })
+                }
                 return this.visibleDialog;
             },
             set(val){
@@ -120,17 +135,18 @@ export default {
         handleClose(){
             this.$emit("dialogClose", false);
         }, 
+        //删除字典分类tag
         handleCloseTag(tag){
             let index = this.tags.indexOf(tag);
             this.tags.splice(index,1);
         },
 
-        //添加
+        //显示全部分类
         handleAdd(){
             this.type = "add";
             this.classifyVision = true;
         },
-
+        //确定
         handleConfirm(){
             let submitData = {};
             let that = this;
@@ -168,8 +184,9 @@ export default {
             });
         },
 
+        // 处理全部字典分类弹框关闭 
         handleDialogClose(value){
-            this.classifyVision = value;
+            this.classifyVision = value.open;
         },
         //添加字典分类
         addClassify(value){

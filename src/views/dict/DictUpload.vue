@@ -38,7 +38,7 @@
                     </el-table-column>
                     <el-table-column prop="operation" align="center" :label="$t( prefix + 'column.ope')" width="200" show-overflow-tooltip>
                         <template slot-scope="scope">
-                          <el-button plain @click="handleSplit(scope.row)" type="success" icon="el-icon-new-icon-qiefen"  size="mini" :title="$t( prefix + 'btn.split')"></el-button>
+                          <el-button plain @click="handleSplit(scope.row)" type="primary" icon="el-icon-new-icon-qiefen"  size="mini" :title="$t( prefix + 'btn.split')"></el-button>
                         </template>
                     </el-table-column>
                 </el-table>

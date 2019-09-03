@@ -26,7 +26,7 @@
                     </div>
             <div slot="footer" class="dialog-footer">
                 <el-button type="success"  size="small" plain @click="handleAdd">{{ $t(prefix + 'btn.add') }}</el-button>
-                <el-button type="success"  size="small" plain @click="handleClear">{{ $t(prefix + 'btn.clear') }}</el-button>
+                <el-button type="danger"  size="small" plain @click="handleClear">{{ $t(prefix + 'btn.clear') }}</el-button>
                 <el-button type="danger" size="small" plain @click="handleClose">{{ $t(prefix + 'btn.close') }}</el-button>
             </div>
         </el-dialog>
@@ -151,9 +151,9 @@ export default {
             this.dialogVision = true;
         },
 
-        //操作
+        //删除和清空请求处理
         handleOperation(requestData, confirmMsg, type){
-             this.$confirm(confirmMsg , '提示', {
+             this.$confirm(confirmMsg , this.$t(this.prefix + 'tips.title'), {
 					confirmButtonText: this.$t(this.prefix + 'btn.confirm'),
 					cancelButtonText: this.$t(this.prefix + 'btn.cancel'),
 					type: 'warning'
@@ -209,9 +209,12 @@ export default {
             this.handleOperation(requestData, confirmMsg, 'clear');
         },
 
+        //全部字典分类弹框关闭触发
        handleDialogClose(data){
-           this.init(this.id);
-           this.dialogVision = data;
+           if(data.reset){
+                 this.init(this.id);
+           }
+           this.dialogVision = data.open;
        }
     },
     components:{

@@ -63,7 +63,7 @@ export default {
                 };
                 if (res.status == 1) {
                     this.$message({
-                        type: 'error',
+                        type: 'success',
                         message: res.message,
                         duration: 2000,
                         showClose: true

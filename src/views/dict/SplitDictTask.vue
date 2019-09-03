@@ -8,7 +8,7 @@
                     <span class="item-ml-5">{{ $t(prefix + 'title') }}</span>
                 </p>
                 <el-button-group class="item-right">
-                    <el-button type="primary"  @click="mergeDict()" :disabled="disabled" size="mini">{{ $t(prefix + 'btn.mergeDict') }}</el-button>
+                    <el-button type="primary"  @click="mergeDict()" :disabled="disabled" size="mini" icon="el-icon-new-iconmerge1" :title="$t(prefix + 'btn.mergeDict')"></el-button>
                 </el-button-group>
             </div>
             <div class="app-config-main clear" v-loading="loading" :element-loading-text="$t('app.table.loading')" style="width: 100%" element-loading-spinner="el-icon-loading" element-loading-background="rgba(0, 0, 0, 0.8)">
@@ -26,12 +26,12 @@
                     </el-table-column>
                     <el-table-column prop="splitDict" :label="$t(prefix + 'columns.splitDict')" width="200" align="center" show-overflow-tooltip>
                          <template slot-scope="scope">
-                          <el-button @click="splitDict(scope.row)" type="info" plain size="mini">{{ $t(prefix + 'btn.detail') }}</el-button>
+                          <el-button @click="splitDict(scope.row)" type="primary" plain size="mini" icon="el-icon-more" :title="$t(prefix + 'btn.detail')"></el-button>
                         </template>
                     </el-table-column>
                     <el-table-column prop="dictClassification" :label="$t(prefix + 'columns.dictClassification')" width="200" align="center" show-overflow-tooltip>
                         <template slot-scope="scope">
-                          <el-button @click="dictClassification(scope.row)" type="info" plain  size="mini" >{{ $t(prefix + 'btn.detail') }}</el-button>
+                          <el-button @click="dictClassification(scope.row)" type="primary" plain  size="mini" icon="el-icon-more" :title="$t(prefix + 'btn.detail')" ></el-button>
                         </template>
                     </el-table-column>
                     <el-table-column prop="encodingStyle" :label="$t(prefix + 'columns.encodingStyle')" width="200" align="center" show-overflow-tooltip>
@@ -236,6 +236,7 @@ export default {
                 });
             }else{
                 let that = this;
+                this.mergeList = [];
                 this.multipleSelection.forEach(dict =>{
                     that.mergeList.push({
                         name:dict.originFilename+"("+dict.dictAlign + ")",
@@ -272,6 +273,7 @@ export default {
         },
         //合并弹框关闭触发
         handleMergeClose(data){
+            this.multipleSelection = [];
             this.mergeDialogVision = data;
             this.init();
         },
@@ -310,6 +312,11 @@ export default {
     }
 }
 </script>
+<style scoped>
+    /deep/ .el-icon-new-iconmerge1{
+        font-size: 12px;
+    }
+</style>
 
 
 

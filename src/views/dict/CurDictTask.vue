@@ -9,18 +9,22 @@
                 </p>
             </div>
             <div class="app-config-main clear" v-loading="loading" :element-loading-text="$t('app.table.loading')" style="width: 100%" element-loading-spinner="el-icon-loading" element-loading-background="rgba(0, 0, 0, 0.8)">
-                <el-table :data="tableData" ref="multipleTable" border  style="width: 100%">
-                    <el-table-column type="selection" width="50" align="center" fixed></el-table-column>
+                <el-table :data="tableData" ref="multipleTable" border  style="width: 100%" :row-class-name="tableRowClassName">
                     <el-table-column prop="ID" fixed :label="$t( prefix + 'columns.ID')" width="50" align="center" show-overflow-tooltip>
                     </el-table-column>
                     <el-table-column prop="direction" fixed :label="$t(prefix + 'columns.direction')" width="200" align="center" show-overflow-tooltip>
                     </el-table-column>
                     <el-table-column prop="condition" fixed :label="$t(prefix + 'columns.condition')" width="200" align="center" show-overflow-tooltip>
                          <template slot-scope="scope">
+                             <!-- 待执行 -->
                             <div v-if="scope.row.condition == 0" class="task_status_column" style="background: #E6A23C;">{{  $t(prefix + 'status.wait') }}</div>
+                            <!-- 正在执行 -->
                             <div v-else-if="scope.row.condition == 1" class="task_status_column"  style="background: #409EFF;">{{  $t(prefix + 'status.process') }}</div>
+                            <!-- 执行成功 -->
                             <div v-else-if="scope.row.condition == 2" class="task_status_column"  style="background: #67C23A;">{{  $t(prefix + 'status.success') }}</div>
+                            <!-- 执行失败 -->
                             <div v-else-if="scope.row.condition == 3" class="task_status_column"  style="background: #F56C6C;">{{  $t(prefix + 'status.failure') }}</div>
+                            <!-- 被删除 -->
                             <div v-else class="task_status_column"  style="background: #909399;">{{  $t(prefix + 'status.delete') }}</div>
                         </template>
                     </el-table-column>
