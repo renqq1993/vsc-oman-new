@@ -109,6 +109,7 @@ export default {
                 this.handleClose();
             }    
         },
+        //选择原始字典触发
         handleOrginDictChange(value){
             if(value == this.selectDict[0].id||value == this.selectDict[0].name){
                 this.mergeForm.targetDict = this.selectDict[1].name;
@@ -117,6 +118,7 @@ export default {
                 this.mergeForm.targetDict = this.selectDict[0].name;
             }
         },
+        //选择目的字典触发
         handleTargetDictChange(value){
             if(value == this.selectDict[0].name || value == this.selectDict[0].id){
                 this.mergeForm.orginDict = this.selectDict[1].name;

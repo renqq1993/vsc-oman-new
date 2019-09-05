@@ -4,10 +4,10 @@
         <el-dialog :title="$t(prefix + 'splitTitle')" :visible.sync="splitDialog" :close-on-click-modal="false" width="50%" @close="handleClose">
             <el-form :model="ruleForm"  ref="ruleForm" :rules="rules" :label-width="labelWidth" class="demo-ruleForm">
                 <el-form-item :label="$t(prefix + 'splitForm.filename')" prop="name">
-                   <span>{{dict.name}}</span>
+                   <span class="text">{{dict.name}}</span>
                 </el-form-item>
                 <el-form-item :label="$t(prefix + 'splitForm.filepath')" prop="region">
-                   <span>{{dict.path}}</span>
+                   <span class="text">{{dict.path}}</span>
                 </el-form-item>
                 <el-form-item :label="$t(prefix + 'splitForm.dictAlign')" required prop="align">
                     <el-input v-model="ruleForm.align"></el-input>
@@ -217,6 +217,14 @@ export default {
         border: 1px solid #DCDFE6;
         height:100px;
         width:100%;
+        margin-top: 13px;
+    }
+    .text{
+        display:inline-block;
+        width:100%;
+        white-space:nowrap; 
+        text-overflow:ellipsis; 
+        overflow: hidden;
     }
     
 </style>

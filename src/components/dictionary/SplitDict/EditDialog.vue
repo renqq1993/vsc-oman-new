@@ -2,7 +2,7 @@
     <!-- 修改字典弹框 -->
     <el-dialog :title="$t(prefix + 'editTable')" :visible.sync="editDialog" :close-on-click-modal="false" width="30%" @close="handleClose">
        <el-form :model="editForm" ref="editForm">
-            <el-form-item :label="$t(prefix + 'editColumn.name')" label-width="160px">
+            <el-form-item :label="$t(prefix + 'editColumn.name')" :label-width="labelWidth">
                  <el-input v-model="editForm.name" autocomplete="off"></el-input>
             </el-form-item>
         </el-form>
@@ -33,12 +33,19 @@ export default {
         return {
             prefix:"app.table.dictionary.splitDict.",
             editForm:{name:""},
+            labelWidth:"0px",
         }
     },
     computed:{
         editDialog:{
             get(){
                 if(this.visibleDialog){
+                    if(this.$i18n.locale == "en"){
+                        this.labelWidth = "130px";
+                    }
+                    else{
+                        this.labelWidth = "80px";
+                    };
                     this.editForm = {name:this.dictAlign};
                 }
                 return this.visibleDialog;

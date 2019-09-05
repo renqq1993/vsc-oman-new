@@ -342,6 +342,42 @@ const en = {
                             }
                         }
                     }
+                },
+                templateConfig:{
+                    tab1:"Password Mode Configuration",
+                    tab2:"Task Mode Configuration",
+                    btn:{
+                        addOrEdit:"Add/Edit Type",
+                        delete:"Delete",
+                        addMode:"Add Mode",
+                        renameMode:"Rename Mode",
+                        deleteMode:"Delete Mode",
+                        setPwd:"Configure Password Space",
+                        search:"Search",
+                        confirm:"Confirm",
+                        cancel:"Cancel",
+                        addCharcter:"Add character set",
+                        deleteCharcter:"Delete character set",
+                    },
+                    searchTab:{
+                        mode:"Password Mode ID",
+                        name:"Name",
+                    },
+                    addMode:{
+                        title:"Add Password Mode",
+                        name:"Mode Name",
+                        maxLen:"Maximum Length",
+                        minLen:"Mininum Length",
+                    },
+                    renameMode:{
+                        title:"Rename Password Mode",
+                        name:"Mode Name",
+                    },
+                    tips:{
+                        title:"Tips",
+                        deleteMode:"Are you sure to delete the mode？",
+                        setPwd:"Please select the releted type from the left type tree before setting the spassword template"
+                    }
                 }
             },
             device: {

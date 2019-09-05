@@ -104,7 +104,7 @@ export default {
                     if(this.multipleSelection.length > 0){
                         let that = this;
                         this.multipleSelection.forEach(function(row){
-                            let selectedindex =  that.tableData.findIndex(dict => dict.id == row.id);
+                            let selectedindex =  that.tableData.findIndex(dict => dict.ID == row.ID);
                             if(selectedindex != undefined){
                                 num ++;
                                 that.$refs.multipleTable.toggleRowSelection(that.tableData[selectedindex],true);
@@ -174,7 +174,7 @@ export default {
             }    
         },
         
-        //删除选中s
+        //删除选中
         handleDeleteMulti(){
             if(this.multipleSelection.length > 0){
                 this.$confirm(this.$t(this.prefix + 'tips.deleteSelection'), this.$t(this.prefix + 'tips.title'), {
@@ -191,14 +191,7 @@ export default {
                     this.$refs.multipleTable.clearSelection();
                 }).catch(e => {
                     console.log(e);
-                    this.$refs.multipleTable.clearSelection();
-                    this.$message({
-                        type: 'info',
-                        message: this.$t(this.prefix + 'tips.cancelTip'),
-                        duration: 2000,
-                        customClass: 'message_zIndex',
-                        showClose: true
-                    });          
+                    this.$refs.multipleTable.clearSelection();   
                 });
             }
             else{
@@ -222,14 +215,7 @@ export default {
             }).then(async () => {
                 this.deleteDict({ID:val.id});
             }).catch(e => {
-                console.log(e);
-                this.$message({
-                    type: 'info',
-                    message: this.$t(this.prefix + 'tips.cancelTip'),
-                    duration: 2000,
-                    customClass: 'message_zIndex',
-                    showClose: true
-                });          
+                console.log(e);        
             });
         },
 

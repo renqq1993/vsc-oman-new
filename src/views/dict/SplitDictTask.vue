@@ -133,7 +133,7 @@ export default {
                     if(this.multipleSelection.length > 0){
                          let that = this;
                         this.multipleSelection.forEach(function(row){
-                            let selectedIndex =  that.tableData.findIndex(dict => dict.id == row.id);
+                            let selectedIndex =  that.tableData.findIndex(dict => dict.ID == row.ID);
                             if(selectedIndex != undefined){
                                 num ++;
                                 that.$refs.multipleTable.toggleRowSelection(that.tableData[selectedIndex],true);

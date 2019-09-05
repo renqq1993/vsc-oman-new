@@ -9,7 +9,7 @@
                 </p>
             </div>
             <div class="app-config-main clear" v-loading="loading" :element-loading-text="$t('app.table.loading')" style="width: 100%" element-loading-spinner="el-icon-loading" element-loading-background="rgba(0, 0, 0, 0.8)">
-                <el-table :data="tableData" ref="multipleTable" border  style="width: 100%" :row-class-name="tableRowClassName">
+                <el-table :data="tableData" ref="multipleTable" border  style="width: 100%">
                     <el-table-column prop="ID" fixed :label="$t( prefix + 'columns.ID')" width="50" align="center" show-overflow-tooltip>
                     </el-table-column>
                     <el-table-column prop="direction" fixed :label="$t(prefix + 'columns.direction')" width="200" align="center" show-overflow-tooltip>

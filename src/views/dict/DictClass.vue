@@ -38,6 +38,7 @@
 <script>
  import ClassificationTree from '@/components/dictionary/SplitDict/ClassificationTree'
  import DictClassDialog from '@/components/dictionary/DictClass/DictClassDialog'
+
     export default {
         name: 'DictClass',
         data(){
@@ -127,7 +128,7 @@
             //节点树组件
             ClassificationTree,
             //添加和修改树弹框
-            DictClassDialog
+            DictClassDialog,
         }
     }
     </script>

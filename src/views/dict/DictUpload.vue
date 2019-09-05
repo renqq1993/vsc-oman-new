@@ -189,6 +189,7 @@ export default {
                                 throw new Error(res.message);
                             }
                     } catch(err) {
+                        this.$refs.multipleTable.clearSelection();
                         this.$message({
                             type: 'error',
                             message: err.message,
@@ -196,7 +197,9 @@ export default {
                             showClose: true
                         });
                     }
-				});
+				}).catch(() => {
+                    this.$refs.multipleTable.clearSelection();    
+                });
        },
        handleUpload(){
            Bus.$emit("openDictUploader");

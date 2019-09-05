@@ -38,6 +38,11 @@ export const createUser = data => fetch('/webapp/index.php/home/user/createUser'
  */
 export const getHisOptLists = data => fetch('/webapp/index.php/home/Operation/getHsOperation', data);
 
+/**
+ * 获取口令模板树配置 
+ */
+export const getPwdMode = data => fetch('/webapp/index.php/home/Operation/getHsOperation', data);
+
 
 /***************************  字典管理  **********************************/
 /**

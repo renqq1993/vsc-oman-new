@@ -343,6 +343,42 @@ const cn = {
                             }
                         }
                     }
+                },
+                templateConfig:{
+                    tab1:"口令模板配置",
+                    tab2:"任务模板配置",
+                    btn:{
+                        addOrEdit:"添加/修改类型",
+                        delete:"删除",
+                        addMode:"添加模板",
+                        renameMode:"重命名模板",
+                        deleteMode:"删除模板",
+                        setPwd:"设置口令空间",
+                        search:"查询",
+                        confirm:"确定",
+                        cancel:"取消",
+                        addCharcter:"添加字符集",
+                        deleteCharcter:"删除字符集",
+                    },
+                    searchTab:{
+                        mode:"口令模板",
+                        name:"名称",
+                    },
+                    addMode:{
+                        title:"添加口令模板",
+                        name:"模板名称",
+                        maxLen:"最大长度",
+                        minLen:"最小长度",
+                    },
+                    renameMode:{
+                        title:"重命名口令模板",
+                        name:"模板名称",
+                    },
+                    tips:{
+                        title:"提示",
+                        deleteMode:"确定要删除此模板吗？",
+                        setPwd:"设置具体口令模板前，请先从左边类型树中选择相应所在类型"
+                    }
                 }
             },
             device: {
