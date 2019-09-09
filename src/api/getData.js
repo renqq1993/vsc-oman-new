@@ -43,6 +43,11 @@ export const getHisOptLists = data => fetch('/webapp/index.php/home/Operation/ge
  */
 export const getPwdMode = data => fetch('/webapp/index.php/home/Operation/getHsOperation', data);
 
+/**
+ * 获取任务模板树配置 
+ */
+export const getTaskMode = data => fetch('/webapp/index.php/home/Operation/getHsOperation', data);
+
 
 /***************************  字典管理  **********************************/
 /**

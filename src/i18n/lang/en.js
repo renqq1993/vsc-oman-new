@@ -358,10 +358,27 @@ const en = {
                         cancel:"Cancel",
                         addCharcter:"Add character set",
                         deleteCharcter:"Delete character set",
+                        setTaskMode:"Configure Task Mode"
                     },
                     searchTab:{
-                        mode:"Password Mode ID",
+                        modeID:"Password Mode ID",
                         name:"Name",
+                    },
+                    typeTitle:"Password mode content of",
+                    typeTable:{
+                        id:"Mode ID",
+                        name:"Mode Name",
+                        maxLen:"Maxinum Password Length",
+                        minLen:"Mininum Password Length",
+                        num:"Number of Password",
+                        ope:"Operation"
+                    },
+                    taskTable:{
+                        name:"Mode Name",
+                        targetFile:"Target File",
+                        resource:"Calculating Resource",
+                        pwdConfig:"Password Configuration",
+                        parameter:"Performance Parameter"
                     },
                     addMode:{
                         title:"Add Password Mode",

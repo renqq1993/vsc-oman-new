@@ -348,7 +348,8 @@ const cn = {
                     tab1:"口令模板配置",
                     tab2:"任务模板配置",
                     btn:{
-                        addOrEdit:"添加/修改类型",
+                        addType:"添加类型",
+                        editType:"修改类型",
                         delete:"删除",
                         addMode:"添加模板",
                         renameMode:"重命名模板",
@@ -359,10 +360,27 @@ const cn = {
                         cancel:"取消",
                         addCharcter:"添加字符集",
                         deleteCharcter:"删除字符集",
+                        setTaskMode:"设置任务模板"
                     },
                     searchTab:{
-                        mode:"口令模板",
+                        modeID:"口令模板ID",
                         name:"名称",
+                    },
+                    typeTitle:"的口令模板内容",
+                    typeTable:{
+                        id:"模板ID",
+                        name:"模板名称",
+                        maxLen:"口令最大长度",
+                        minLen:"口令最小长度",
+                        num:"口令个数",
+                        ope:"操作"
+                    },
+                    taskTable:{
+                        name:"模板名称",
+                        targetFile:"目标文件",
+                        resource:"计算资源",
+                        pwdConfig:"口令配置",
+                        parameter:"执行参数"
                     },
                     addMode:{
                         title:"添加口令模板",
