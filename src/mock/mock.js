@@ -341,7 +341,7 @@ export const dictUpload = [
         UserID:"",
         TempID:"",
         AppID:-2,
-        type:-1,
+        type:-2,
         icon:"",
         AppName:"",
         TargetType:"",
@@ -360,7 +360,7 @@ export const dictUpload = [
         UserID:"",
         TempID:"",
         AppID:-2,
-        type:-1,
+        type:-3,
         icon:"",
         AppName:"",
         TargetType:"",
@@ -386,5 +386,47 @@ export const dictUpload = [
         AppPwdMaxLen:"",
         InitialScreening:"",
         appType:""
+},
+]
+export const typeTableData = [
+    {
+        EleMax:5,
+        EleMin:1,
+        TempCharSize:"7417954634",
+        TempDesc:"",
+        TempID:"15",
+        TempName:"1到5位所有可见字符",
+        TempTypeID:"4",
+        UserID:"1",
     },
- ]
+    {
+        EleMax:5,
+        EleMin:1,
+        TempCharSize:"7417954634",
+        TempDesc:"",
+        TempID:"15",
+        TempName:"1到5位数字",
+        TempTypeID:"4",
+        UserID:"1",
+    },
+    {
+        EleMax:5,
+        EleMin:1,
+        TempCharSize:"7417954634",
+        TempDesc:"",
+        TempID:"15",
+        TempName:"1到5位小写字母",
+        TempTypeID:"4",
+        UserID:"1",
+    },
+    {
+        EleMax:5,
+        EleMin:1,
+        TempCharSize:"7417954634",
+        TempDesc:"",
+        TempID:"15",
+        TempName:"1到5位大写字母",
+        TempTypeID:"4",
+        UserID:"1",
+    }
+]

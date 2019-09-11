@@ -360,7 +360,10 @@ const cn = {
                         cancel:"取消",
                         addCharcter:"添加字符集",
                         deleteCharcter:"删除字符集",
-                        setTaskMode:"设置任务模板"
+                        setTaskMode:"设置任务模板",
+                        reset:"重置",
+                        addModeName:"添加模板名",
+                        renameModeName:"重命名",
                     },
                     searchTab:{
                         modeID:"口令模板ID",
@@ -392,10 +395,26 @@ const cn = {
                         title:"重命名口令模板",
                         name:"模板名称",
                     },
+                    addType:{
+                        addTitle:"添加类型名称",
+                        editTitle:"修改类型名称",
+                        name:"类型名称"
+                    },
+                    addModeName:{
+                        addTitle:"新建任务模板（应用类型",
+                        editTitle:"重命名任务模板（模板名称",
+                        name:"模板名称"
+                    },
                     tips:{
                         title:"提示",
                         deleteMode:"确定要删除此模板吗？",
-                        setPwd:"设置具体口令模板前，请先从左边类型树中选择相应所在类型"
+                        deleteType:"确定要删除此类型吗？",
+                        deleteRootMode:"不能删除根目录/应用",
+                        deleteTypeSuccess:"删除类型成功",
+                        deleteModeSuccess:"删除模板成功",
+                        setPwd:"设置具体口令模板前，请先从左边类型树中选择相应所在类型",
+                        addModel:"请先点击具体应用",
+                        editMode:"不能修改根目录/应用"
                     }
                 }
             },

@@ -8,7 +8,7 @@
                 </p>
             </div>
             <el-button-group class="item-right">
-                <el-button @click="handleUpload" type="primary" icon="el-icon-new-icon-shebeiguanli3
+                <el-button  type="primary" icon="el-icon-new-icon-shebeiguanli3
 
 " size="mini" :title="$t( prefix + 'btn.setTaskMode')"></el-button>
             </el-button-group>
@@ -63,6 +63,23 @@ export default {
             splitDict:{},
             test:false,
         }
+    },
+    mounted(){
+        Bus.$on("fileAdded", convertData => {
+            let data = {
+                file: convertData.file,
+                percent: 0,
+                status: this.$t(this.prefix + 'uploadStatus.wait'),
+                fileType:convertData.fileType
+            };
+
+            if (this.fileList.indexOf(data) == -1) {
+                this.fileList.push(data);
+                this.increaseCount();
+                console.log(this.$store.state.upload.uploadCount);
+            }
+            this.tabVision = true;
+        });
     },
     methods: {
        init(message, type){

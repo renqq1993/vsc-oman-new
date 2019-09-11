@@ -48,7 +48,35 @@ export const getPwdMode = data => fetch('/webapp/index.php/home/Operation/getHsO
  */
 export const getTaskMode = data => fetch('/webapp/index.php/home/Operation/getHsOperation', data);
 
+/**
+ * 删除任务模板配置 
+ */
+export const deleteTaskMode = data => fetch('/webapp/index.php/home/Operation/getHsOperation', data);
 
+/**
+ * 删除口令模板配置 
+ */
+export const deletePwdMode = data => fetch('/webapp/index.php/home/Operation/getHsOperation', data);
+
+/**
+ * 添加类型 
+ */
+export const addType = data => fetch('/webapp/index.php/home/Operation/getHsOperation', data);
+
+/**
+ * 修改类型 
+ */
+export const editType = data => fetch('/webapp/index.php/home/Operation/getHsOperation', data);
+
+/**
+ * 添加模板名
+ */
+export const addModeName = data => fetch('/webapp/index.php/home/Operation/getHsOperation', data);
+
+/**
+ * 重命名模板名
+ */
+export const editModeName = data => fetch('/webapp/index.php/home/Operation/getHsOperation', data);
 /***************************  字典管理  **********************************/
 /**
  * 获取历史字典信息（包含生成数据列表） 

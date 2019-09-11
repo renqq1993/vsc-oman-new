@@ -3,11 +3,15 @@
         <el-tab-pane :label="$t(prefix + 'tab1')" name="tab1">
                 <el-row>
                     <el-col :span="5">
-                        <mode-tree :reset="reset" :activeKey="activeName"></mode-tree>
+                        <mode-tree :reset="reset" activeKey="tab1" @handleReset="handleReset"  @clickNode="clickNode"></mode-tree>
                     </el-col>
                     <el-col :span="17" :offset="2">
                         <el-row>
-                            <type-table></type-table>
+                            <type-table v-show="showTable"></type-table>
+                            <div v-if="!showTable">
+                                <div class="title">{{$t(prefix + 'tips.title')}}</div>
+                                <div class="content">{{$t(prefix + 'tips.setPwd')}}</div>
+                            </div>
                         </el-row>
                     </el-col>
                 </el-row>
@@ -15,7 +19,7 @@
         <el-tab-pane :label="$t(prefix + 'tab2')" name="tab2">
                 <el-row>
                     <el-col :span="5">
-                         <mode-tree :reset="reset" :activeKey="activeName"></mode-tree>
+                         <mode-tree :reset="reset" activeKey="tab2"  @handleReset="handleReset"></mode-tree>
                     </el-col>
                     <el-col :span="17" :offset="2">
                         <task-table></task-table>
@@ -37,7 +41,7 @@
                 prefix:"app.table.task.templateConfig.",
                 activeName:"tab1",
                 reset:false,
-               
+                showTable:false,
             };
         },
         methods:{
@@ -52,6 +56,9 @@
             },
             handleClick(){
                this.reset = true;
+            },
+            clickNode(){
+                this.showTable = true;
             }
         },
         components:{
@@ -70,5 +77,16 @@
     }
     .el-col-offset-2{
         margin-left: 4.3333% !important;
+    }
+    .title{
+        padding-top: 40px;
+        color: red;
+        font-size: 30px;
+    }
+    .content{
+        font-size: 25px;
+        padding-top: 20px;
+        font-family: inherit;
+        text-align: center;
     }
     </style>

@@ -347,7 +347,8 @@ const en = {
                     tab1:"Password Mode Configuration",
                     tab2:"Task Mode Configuration",
                     btn:{
-                        addOrEdit:"Add/Edit Type",
+                        addType:"Add Type",
+                        editType:"Edit Type",
                         delete:"Delete",
                         addMode:"Add Mode",
                         renameMode:"Rename Mode",
@@ -356,9 +357,12 @@ const en = {
                         search:"Search",
                         confirm:"Confirm",
                         cancel:"Cancel",
+                        reset:"reset",
                         addCharcter:"Add character set",
                         deleteCharcter:"Delete character set",
-                        setTaskMode:"Configure Task Mode"
+                        setTaskMode:"Configure Task Mode",
+                        addModeName:"add",
+                        renameModeName:"rename",
                     },
                     searchTab:{
                         modeID:"Password Mode ID",
@@ -370,7 +374,7 @@ const en = {
                         name:"Mode Name",
                         maxLen:"Maxinum Password Length",
                         minLen:"Mininum Password Length",
-                        num:"Number of Password",
+                        num:"Number of Passwords",
                         ope:"Operation"
                     },
                     taskTable:{
@@ -390,10 +394,26 @@ const en = {
                         title:"Rename Password Mode",
                         name:"Mode Name",
                     },
+                    addType:{
+                        addTitle:"Add Type Name",
+                        editTitle:"Edit Type Name",
+                        name:"Type Name"
+                    },
+                    addModeName:{
+                        addTitle:"Create New Task Mode（Application Type",
+                        editTitle:"Rename Task Node（Mode Name",
+                        name:"Mode Name"
+                    },
                     tips:{
                         title:"Tips",
-                        deleteMode:"Are you sure to delete the mode？",
-                        setPwd:"Please select the releted type from the left type tree before setting the spassword template"
+                        deleteMode:"Are you sure to delete the task mode?",
+                        deleteType:"Are you sure to delete this type?",
+                        deleteTypeSuccess:"delete the type success",
+                        deleteModeSuccess:"delete the mode success",
+                        deleteRootMode:"Can't delete root directory/application",
+                        setPwd:"Please select the releted type from the left type tree",
+                        addModel:"Please click the specific application",
+                        editMode:"could not change the root directory/application"
                     }
                 }
             },

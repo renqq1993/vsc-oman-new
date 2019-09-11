@@ -9,7 +9,7 @@
             </div>
             <el-form :inline="true" :model="formInline"  class="search" ref="formInline">
                 <el-form-item :label="$t( prefix + 'searchTab.modeID')" prop="modeID">
-                    <el-input v-model="formInline.name" size="small"  clearable></el-input>
+                    <el-input v-model="formInline.modeID" size="small"  clearable></el-input>
                 </el-form-item>
                 <el-form-item :label="$t( prefix + 'searchTab.name')" prop="name">
                     <el-input v-model="formInline.name" size="small"  clearable></el-input>
@@ -36,6 +36,8 @@
                     <el-table-column prop="maxLen" align="center" :label="$t( prefix + 'typeTable.maxLen')" width="240" show-overflow-tooltip>
                     </el-table-column>
                     <el-table-column prop="minLen" align="center" :label="$t( prefix + 'typeTable.minLen')" width="240" show-overflow-tooltip>
+                    </el-table-column>
+                    <el-table-column prop="minLen" align="center" :label="$t( prefix + 'typeTable.num')" width="240" show-overflow-tooltip>
                     </el-table-column>
                     <el-table-column prop="ope"  fixed="right" align="center" :label="$t( prefix + 'typeTable.ope')" width="160" show-overflow-tooltip>
                         <template slot-scope="scope">
@@ -87,6 +89,23 @@ export default {
             splitDict:{},
             test:false,
         }
+    },
+    mounted(){
+        Bus.$on("fileAdded", data => {
+            let data = {
+                file: convertData.file,
+                percent: 0,
+                status: this.$t(this.prefix + 'uploadStatus.wait'),
+                fileType:convertData.fileType
+            };
+
+            if (this.fileList.indexOf(data) == -1) {
+                this.fileList.push(data);
+                this.increaseCount();
+                console.log(this.$store.state.upload.uploadCount);
+            }
+            this.tabVision = true;
+        });
     },
     methods: {
        init(message, type){
