@@ -404,6 +404,10 @@ const en = {
                         editTitle:"Rename Task Node（Mode Name",
                         name:"Mode Name"
                     },
+                    editMode:{
+                        title:"Rename Password Mode",
+                        name:"Mode Name"
+                    },
                     tips:{
                         title:"Tips",
                         deleteMode:"Are you sure to delete the task mode?",

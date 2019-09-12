@@ -29,20 +29,20 @@
             <div class="type-table-main clear" v-loading="loading" :element-loading-text="$t('app.table.loading')" element-loading-spinner="el-icon-loading" element-loading-background="rgba(0, 0, 0, 0.8)">
                 <el-table :data="tableData" ref="multipleTable" border @selection-change="handleSelectionChange">
                     <el-table-column align="center" type="selection" width="50" fixed></el-table-column>
-                    <el-table-column prop="id" align="center"  fixed :label="$t( prefix + 'typeTable.id')" width="160" show-overflow-tooltip>
+                    <el-table-column prop="TempID" align="center"  fixed :label="$t( prefix + 'typeTable.id')" width="160" show-overflow-tooltip>
                     </el-table-column>
-                    <el-table-column prop="name" align="center"  fixed :label="$t( prefix + 'typeTable.name')" width="160" show-overflow-tooltip>
+                    <el-table-column prop="TempName" align="center"  fixed :label="$t( prefix + 'typeTable.name')" width="160" show-overflow-tooltip>
                     </el-table-column>
-                    <el-table-column prop="maxLen" align="center" :label="$t( prefix + 'typeTable.maxLen')" width="240" show-overflow-tooltip>
+                    <el-table-column prop="EleMax" align="center" :label="$t( prefix + 'typeTable.maxLen')" width="240" show-overflow-tooltip>
                     </el-table-column>
-                    <el-table-column prop="minLen" align="center" :label="$t( prefix + 'typeTable.minLen')" width="240" show-overflow-tooltip>
+                    <el-table-column prop="EleMin" align="center" :label="$t( prefix + 'typeTable.minLen')" width="240" show-overflow-tooltip>
                     </el-table-column>
-                    <el-table-column prop="minLen" align="center" :label="$t( prefix + 'typeTable.num')" width="240" show-overflow-tooltip>
+                    <el-table-column prop="TempCharSize" align="center" :label="$t( prefix + 'typeTable.num')" width="240" show-overflow-tooltip>
                     </el-table-column>
                     <el-table-column prop="ope"  fixed="right" align="center" :label="$t( prefix + 'typeTable.ope')" width="160" show-overflow-tooltip>
                         <template slot-scope="scope">
-                          <el-button plain @click="handleSet()" type="primary" icon="el-icon-edit"  size="mini" :title="$t( prefix + 'btn.renameMode')"></el-button>
-                          <el-button plain @click="handleSplit(scope.row)" type="primary" icon="el-icon-new-icon-shebeiguanli3
+                          <el-button plain @click="handleRename(scope.row)" type="primary" icon="el-icon-edit"  size="mini" :title="$t( prefix + 'btn.renameMode')"></el-button>
+                          <el-button plain @click="handleSet(scope.row)" type="primary" icon="el-icon-new-icon-shebeiguanli3
 "  size="mini" :title="$t( prefix + 'btn.setPwd')"></el-button>
                         </template>
                     </el-table-column>
@@ -59,15 +59,18 @@
                 </el-pagination>
             </div>
         </el-card>
-        <!-- <pwd-space-config :table="handleSet"></pwd-space-config> -->
+        <add-Edit-dialog :type="nodeType" :node="node" :visibleDialog="typeVision" @close="handleClose"></add-Edit-dialog>
+        <pwd-space-config :table="test"></pwd-space-config>
     </div>
 </template>
 <script>
-import Vue from 'vue'
 import Bus from "@/assets/js/bus.js"
-import { deleteUploadDict, getUploadDict} from '@/api/getData'
-import {dictUpload} from '@/mock/mock.js'
+import {showPwdMode} from '@/api/getData'
+import {typeTableData} from '@/mock/mock.js'
 import PwdSpaceConfig  from "@/components/task/templateConfig/PwdSpaceConfig"
+import AddEditDialog  from '@/components/task/templateConfig/AddEditDialog.vue'
+
+
 export default {
     name: 'TypeTable',
     data() {
@@ -88,47 +91,45 @@ export default {
             splitVision:false,
             splitDict:{},
             test:false,
+            nodeType:"editMode",
+            node:{},
+            typeVision:false,
         }
     },
     mounted(){
-        Bus.$on("fileAdded", data => {
-            let data = {
-                file: convertData.file,
-                percent: 0,
-                status: this.$t(this.prefix + 'uploadStatus.wait'),
-                fileType:convertData.fileType
+        Bus.$on("clickType", data => {
+            let sendData = {
+                id:data.id,
+                page:this.currentPage,
+                size:this.pageSize
             };
+            // let res = await showPwdMode(sendData);
+            let res = {
+                status:1,
+                message:"获取口令模板内容成功",
+                data:typeTableData,
+                total:4
+            };
+            this.total = res.total;
+            this.tableData = res.data;
 
-            if (this.fileList.indexOf(data) == -1) {
-                this.fileList.push(data);
-                this.increaseCount();
-                console.log(this.$store.state.upload.uploadCount);
-            }
-            this.tabVision = true;
         });
     },
     methods: {
-       init(message, type){
+        init(message, type){
             this.loading = true;
             try {
                 if(this.type =="search"){
-                    // const res = await  getHisDictLists({
-                    // 	curPage: this.currentPage, 
-                    // 	pageSize: this.pageSize,
-                     //   data: this.formInline.name,
-                    // });
+                //    let res = await showPwdMode(sendData);
                 }
                 else{
-                    // const res = await  getHisDictLists({
-                    // 	curPage: this.currentPage, 
-                    // 	pageSize: this.pageSize,
-                    // });
+                //    let res = await showPwdMode(sendData);
                 }
                 let res = {
                     message:"加载上传字典成功",
                     status:1,
-                    data:dictUpload,
-                    total:1,
+                    data:typeTableData,
+                    total:4
                 };
                 if (res.status == 1) {
                     this.loading = false;
@@ -242,10 +243,20 @@ export default {
        },
        handleSet(){
            this.test = true;
+       },
+       handleRename(data){
+           console.log("handleRename");
+           this.node = data;
+           this.typeVision = true;
+       },
+       handleClose(){
+           this.typeVision = false;
+           this.init();
        }
     },
     components:{
-        PwdSpaceConfig
+        PwdSpaceConfig,
+        AddEditDialog
     },
     created(){
         this.init();

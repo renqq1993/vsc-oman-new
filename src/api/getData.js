@@ -77,6 +77,14 @@ export const addModeName = data => fetch('/webapp/index.php/home/Operation/getHs
  * 重命名模板名
  */
 export const editModeName = data => fetch('/webapp/index.php/home/Operation/getHsOperation', data);
+
+/**
+ * 显示口令模版内容
+ */
+export const showPwdMode = data => fetch('/webapp/index.php/home/Operation/getHsOperation', data);
+
+
+
 /***************************  字典管理  **********************************/
 /**
  * 获取历史字典信息（包含生成数据列表） 

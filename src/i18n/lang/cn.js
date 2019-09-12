@@ -405,6 +405,10 @@ const cn = {
                         editTitle:"重命名任务模板（模板名称",
                         name:"模板名称"
                     },
+                    editMode:{
+                        title:"重命名口令模板",
+                        name:"模板名称"
+                    },
                     tips:{
                         title:"提示",
                         deleteMode:"确定要删除此模板吗？",

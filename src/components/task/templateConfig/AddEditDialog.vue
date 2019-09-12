@@ -74,6 +74,11 @@ export default {
                 this.label = this.$t(this.prefix + "addModeName.name");
                  this.editForm = {name:""};
             }
+            else if(this.type == "editMode"){
+                this.title = this.$t(this.prefix + "editMode.title");
+                this.label = this.$t(this.prefix + "editMode.name");
+                 this.editForm = {name:this.node.TempName};
+            }
             else{
                 this.title = this.$t(this.prefix + "addModeName.editTitle") + ":" + this.node.name + ")";
                 this.label = this.$t(this.prefix + "addModeName.name");
@@ -86,7 +91,7 @@ export default {
         //确认请求
         handleConfirm(){
             try {
-                console.log({dictID:this.dictID, name:this.editForm.name});
+                // console.log({dictID:this.dictID, name:this.editForm.name});
                 if(this.type == "addType"){
                       // let res = addType({dictID:this.dictID, name:this.editForm.name});
                     let res = {
@@ -110,6 +115,14 @@ export default {
                         status:1,
                     };
                     this.handleResponse("addModeName",res);
+                }
+                else if(this.type == "editMode"){
+                      // let res = addModeName({dictID:this.dictID, name:this.editForm.name});
+                    let res = {
+                        message:"重命名口令模板成功",
+                        status:1,
+                    };
+                    this.handleResponse("editMode",res);
                 }
                 else{
                     // let res = editModeName({dictID:this.dictID, name:this.editForm.name});

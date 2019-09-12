@@ -47,7 +47,7 @@ import { deleteUploadDict, getUploadDict} from '@/api/getData'
 import {dictUpload} from '@/mock/mock.js'
 import PwdSpaceConfig  from "@/components/task/templateConfig/PwdSpaceConfig"
 export default {
-    name: 'TypeTable',
+    name: 'TaskTable',
     data() {
         return {
             prefix:"app.table.task.templateConfig.",
@@ -65,20 +65,14 @@ export default {
         }
     },
     mounted(){
-        Bus.$on("fileAdded", convertData => {
-            let data = {
-                file: convertData.file,
-                percent: 0,
-                status: this.$t(this.prefix + 'uploadStatus.wait'),
-                fileType:convertData.fileType
+        Bus.$on("clickMode", data => {
+            this.currentPage = 1;
+            let sendData = {
+                id:data.id,
+                page:this.currentPage,
+                size:this.pageSize
             };
-
-            if (this.fileList.indexOf(data) == -1) {
-                this.fileList.push(data);
-                this.increaseCount();
-                console.log(this.$store.state.upload.uploadCount);
-            }
-            this.tabVision = true;
+            
         });
     },
     methods: {
@@ -101,7 +95,6 @@ export default {
                 let res = {
                     message:"加载上传字典成功",
                     status:1,
-                    data:dictUpload,
                     total:1,
                 };
                 if (res.status == 1) {
