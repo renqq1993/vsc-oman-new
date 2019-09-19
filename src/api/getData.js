@@ -83,6 +83,15 @@ export const editModeName = data => fetch('/webapp/index.php/home/Operation/getH
  */
 export const showPwdMode = data => fetch('/webapp/index.php/home/Operation/getHsOperation', data);
 
+/**
+ * 显示口令模板配置
+ */
+export const getPwdConfig = data => fetch('/webapp/index.php/home/Operation/getHsOperation', data);
+
+/**
+ * 显示
+ */
+export const getAllPwdConfig = data => fetch('/webapp/index.php/home/Operation/getHsOperation', data);
 
 
 /***************************  字典管理  **********************************/

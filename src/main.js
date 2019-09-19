@@ -14,6 +14,8 @@ import uploader from 'vue-simple-uploader'
 import VueCookies from 'vue-cookies'//添加cookie
 import "@/utils/directives.js"//添加dialog拖拽功能 
 
+
+
 import config from '../static/config'
 
 Vue.config.productionTip = false

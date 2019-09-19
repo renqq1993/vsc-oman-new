@@ -378,6 +378,12 @@ const cn = {
                         num:"口令个数",
                         ope:"操作"
                     },
+                    charsetTable:{
+                        content:"字符集内容",
+                        desc:"字符集描述",
+                        bit:"单字符字节",
+                        encode:"字符集编码"
+                    },
                     taskTable:{
                         name:"模板名称",
                         targetFile:"目标文件",

@@ -377,6 +377,12 @@ const en = {
                         num:"Number of Passwords",
                         ope:"Operation"
                     },
+                    charsetTable:{
+                        content:"Charset Content",
+                        desc:"Charset Description",
+                        bit:"Single Character Byte",
+                        encode:"Charset Encoding"
+                    },
                     taskTable:{
                         name:"Mode Name",
                         targetFile:"Target File",

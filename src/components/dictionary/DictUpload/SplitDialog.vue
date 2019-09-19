@@ -10,7 +10,7 @@
                    <span class="text">{{dict.path}}</span>
                 </el-form-item>
                 <el-form-item :label="$t(prefix + 'splitForm.dictAlign')" required prop="align">
-                    <el-input v-model="ruleForm.align"></el-input>
+                    <el-input v-model="ruleForm.align" ref="align"></el-input>
                 </el-form-item>
                 <el-form-item :label="$t(prefix + 'splitForm.splitSize')" prop="size">
                     <el-input v-model="ruleForm.size">

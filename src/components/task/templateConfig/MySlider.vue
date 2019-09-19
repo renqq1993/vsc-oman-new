@@ -22,9 +22,10 @@ import $ from 'jquery'
                 isBtn:0,
                 propoHeight:0
             },
-            isDown:false,
+            isBottomDown:false,
+            isTopDown:false,
+            top:0,
             myDefault:null,
-            bottomPageY:0,
         }
     },
     mounted(){
@@ -32,13 +33,18 @@ import $ from 'jquery'
          let mySlider = this.$refs.mySlider;
          let sliderBar =  mySlider.children[2];
          let bottomBtn = mySlider.children[3];
+         let sliderClass = mySlider.children[1];
          let topBtn = mySlider.children[0];
          let myHeight = 0
 
-         const elementBottom = (e) => {//计算y坐标
-             var offset = e.offsetBottom;
-             if(e.offsetParent != null) offset += elementBottom(e.offsetParent);
-             return offset;
+         const parseNumber = (e) => {
+             if(typeof(e) == "string"){
+                  let numStr = e.substring(0, e.length-2);
+                  return parseInt(numStr);
+             }
+             else{
+                 return e;
+             }
          }
 
          const myCount = () => {//计算滑动
@@ -71,28 +77,48 @@ import $ from 'jquery'
              bottomBtn.style.top = this.myPosition.bottom + '%'
          }
 
-         let mySliderY = elementBottom(mySlider)//滑动块y坐标
+        //  let mySliderY = elementBottom(mySlider)//滑动块y坐标
          console.log(bottomBtn);
 
          mySlider.addEventListener('mousedown',(e)=>{//鼠标按下事件
-             this.isDown = true;
-             console.log(e);
-             this.bottomPageY = e.pageY;
+             this.top = sliderClass.getBoundingClientRect().top;
+             if(e.srcElement.className == "bottom-btn slideBtn"){
+                  this.isBottomDown = true;
+                  this.myPosition.bottom = e.clientY;
+             }
+             else if(e.srcElement.className == "top-btn slideBtn"){
+                 this.isTopDown = true;
+                 this.myPosition.top = e.clientY;
+             }
          })
 
          mySlider.addEventListener('mouseup',(e)=>{//鼠标移动事件
             console.log("mouseup");
-            this.isDown = false;
-            console.log(this.isDown);
+             this.isTopDown = false;
+             this.isBottomDown = false;
+             if(e.srcElement.className == "bottom-btn slideBtn"){
+                this.myPosition.bottom = parseNumber(bottomBtn.style.top);
+                this.myPosition.propoHeight = parseNumber(sliderBar.style.height);
+             }
+             else if(e.srcElement.className == "top-btn slideBtn"){
+                this.myPosition.top = parseNumber(topBtn.style.top);
+                this.myPosition.propoHeight = parseNumber(sliderBar.style.height);
+             }
+
          });
 
         mySlider.addEventListener('mousemove',(e)=>{//屏幕触摸事件
             console.log("mousemove");
-            if(this.isDown){
-                 this.myPosition.propoHeight = e.pageY - this.bottomPageY;
-                 sliderBar.style.height = this.myPosition.propoHeight + "px";
-                 bottomBtn.style.top = this.myPosition.propoHeight + "px";
-                 console.log()
+            if(this.isBottomDown){
+                 let height = e.clientY - this.myPosition.bottom;
+                 sliderBar.style.height = this.myPosition.propoHeight + height + "px";
+                 bottomBtn.style.top = e.clientY - this.top + "px";
+             }
+             else if(this.isTopDown){
+                 let height = e.clientY - this.myPosition.top;
+                 sliderBar.style.top = e.clientY - this.top + "px";
+                 sliderBar.style.height = this.myPosition.propoHeight - height + "px";
+                 topBtn.style.top = e.clientY - this.top + "px";
              }
         });
 
@@ -117,7 +143,7 @@ import $ from 'jquery'
         float: left;
     }
     .sliderClass{
-      width:6px;
+      width:10px;
       height:15360px;
       margin:16px 16px;
       background-color: #e4e7ed;
@@ -143,11 +169,14 @@ import $ from 'jquery'
     .slideBar{
         top:0%;
         height: 0px;
-        width:6px;
+        width:10px;
         background-color: #409eff;
         position: absolute;
         cursor: pointer;
-         margin:16px 16px;
+        margin-top:16px;
+        margin-left: 16px;
+        margin-right: 16px;
+        margin-bottom: 0px;
     }
    
 </style>

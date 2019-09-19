@@ -52,6 +52,51 @@ export const HistoryDict = [
     dictFileSize:"500Mb",
     splitSize:"20Mb",
     commitTime:"2019-08-15 16:21:22",
+    remark:"33"},
+    {ID:7, 
+    dictMenu:"/api/menu",
+    taskStatus:1,
+    dictFilename:"dict1",
+    dictAlign:"别名1",
+    dictFileSize:"500Mb",
+    splitSize:"20Mb",
+    commitTime:"2019-08-15 16:21:22",
+    remark:"33"},
+    {ID:8, 
+    dictMenu:"/api/menu",
+    taskStatus:1,
+    dictFilename:"dict1",
+    dictAlign:"别名1",
+    dictFileSize:"500Mb",
+    splitSize:"20Mb",
+    commitTime:"2019-08-15 16:21:22",
+    remark:"33"},
+    {ID:9, 
+    dictMenu:"/api/menu",
+    taskStatus:1,
+    dictFilename:"dict1",
+    dictAlign:"别名1",
+    dictFileSize:"500Mb",
+    splitSize:"20Mb",
+    commitTime:"2019-08-15 16:21:22",
+    remark:"33"},
+    {ID:10, 
+    dictMenu:"/api/menu",
+    taskStatus:1,
+    dictFilename:"dict1",
+    dictAlign:"别名1",
+    dictFileSize:"500Mb",
+    splitSize:"20Mb",
+    commitTime:"2019-08-15 16:21:22",
+    remark:"33"},
+    {ID:11, 
+    dictMenu:"/api/menu",
+    taskStatus:1,
+    dictFilename:"dict1",
+    dictAlign:"别名1",
+    dictFileSize:"500Mb",
+    splitSize:"20Mb",
+    commitTime:"2019-08-15 16:21:22",
     remark:"33"}
 ]
 export const SplitHistory = [
@@ -430,3 +475,92 @@ export const typeTableData = [
         UserID:"1",
     }
 ]
+
+export const selectCharset = {
+    EleMax:"5",
+    EleMin:"5",
+    count:5,
+    res:[
+        {
+            CharsetDesc:"数字",
+            CharByteLen:"1",
+            CharsetLen:"8162903457",
+            CharsetID:"65540",
+            PwdElementNo:"1",
+            TempID:"67"
+        },
+        {
+            CharsetDesc:"数字",
+            CharByteLen:"1",
+            CharsetLen:"8162903457",
+            CharsetID:"65540",
+            PwdElementNo:"2",
+            TempID:"67"
+        },
+        {
+            CharsetDesc:"数字",
+            CharByteLen:"1",
+            CharsetLen:"8162903457",
+            CharsetID:"65540",
+            PwdElementNo:"3",
+            TempID:"67"
+        },
+        {
+            CharsetDesc:"数字",
+            CharByteLen:"1",
+            CharsetLen:"8162903457",
+            CharsetID:"65540",
+            PwdElementNo:"4",
+            TempID:"67"
+        },
+        {
+            CharsetDesc:"数字",
+            CharByteLen:"1",
+            CharsetLen:"8162903457",
+            CharsetID:"65540",
+            PwdElementNo:"5",
+            TempID:"67"
+        },
+    ]
+}
+
+export const allCharset = {
+    count:5,
+    rs:[
+        {
+            CharByteLen:"1",
+            CharsetContent:"EFAODCFCCFCECFDFD",
+            CharsetDesc:"所有大写字母",
+            CharsetType:"65538",
+            Encoding:"ASCII",
+        },
+        {
+            CharByteLen:"1",
+            CharsetContent:"EFAODCFCCFCECFDFD",
+            CharsetDesc:"所有大写字母",
+            CharsetType:"65539",
+            Encoding:"ASCII",
+        },
+        {
+            CharByteLen:"1",
+            CharsetContent:"EFAODCFCCFCECFDFD",
+            CharsetDesc:"所有大写字母",
+            CharsetType:"65540",
+            Encoding:"ASCII",
+        },
+        {
+            CharByteLen:"1",
+            CharsetContent:"EFAODCFCCFCECFDFD",
+            CharsetDesc:"所有大写字母",
+            CharsetType:"65540",
+            Encoding:"ASCII",
+        },
+        {
+            CharByteLen:"1",
+            CharsetContent:"EFAODCFCCFCECFDFD",
+            CharsetDesc:"所有大写字母",
+            CharsetType:"65540",
+            Encoding:"ASCII",
+        },
+    ]
+}

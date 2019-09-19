@@ -240,6 +240,8 @@ export default {
         handleCurrentPageChange(val){
             this.currentPage = val;
             this.initData();
+            console.log("handleCurrentPageChange");
+            window.scroll(0,0);
         },
 
     },

@@ -4,7 +4,7 @@
         <el-card class="dict-upload-search-card item-mb-20" shadow="hover">
             <el-form :inline="true" :model="formInline"  class="search" ref="formInline">
                 <el-form-item :label="$t( prefix + 'column.dictName')" prop="name">
-                    <el-input v-model="formInline.name" size="small"  clearable></el-input>
+                    <el-input ref="firstSearch" v-model="formInline.name" size="small"  clearable></el-input>
                 </el-form-item>
                 <el-form-item>
                     <el-button icon="el-icon-search" size="small" type="primary" @click="init(searchMsg,'search')" :title="$t( prefix + 'btn.search')"></el-button>
@@ -232,6 +232,9 @@ export default {
         SplitDialog
     },
     created(){
+        this.$nextTick(() =>{
+            this.$refs.firstSearch.focus();
+        })
         this.init();
     }
 }

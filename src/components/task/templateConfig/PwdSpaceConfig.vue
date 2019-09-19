@@ -1,16 +1,51 @@
 <template>
-    <el-drawer title="我嵌套了表格!" :visible.sync="vision" direction="rtl" size="50%" height="100%">
+    <el-drawer title="我嵌套了表格!" :visible.sync="vision" direction="rtl" size="90%" height="100%">
         <div class="sliderDiv">
-           <mySlider></mySlider>
-             <ul class="infinite-list" style="overflow:auto">
-                <li v-for="i in count" :key="i" class="infinite-list-item">{{ i }}</li>
+        <vue-slider v-model="value" direction= 'ttb' height="15400px" width="10px" style="display: inline-block; margin-left: 30px; margin-top:50px;  position:relative;
+        float: left;color: #409EFF;" :max="256" :min="1">
+            <template v-slot:dot="{ value, focus }">
+                <div :class="['custom-dot', { focus }]"></div>
+            </template>
+        </vue-slider>
+            <ul class="infinite-list" style="overflow:auto">
+                <li v-for="i in charsetList" :key="i.num"  class="infinite-list-item">
+                    <span class="count">
+                        <span class="count-font">{{i.num}}</span>
+                    </span>
+                    <span>{{i.charset.CharsetDesc}}<i class="el-icon-arrow-down el-icon--right" @click="openDropMenu($event)"></i></span> 
+                </li>
             </ul>
+            <div class="allCharset" ref="allCharset">
+                 <ul style="overflow:auto">
+                <li v-for="i in allCharset" :key="i.num">
+                    <span  @mouseenter="showCharsetDiv($event, i)" @mouseleave="offCharsetDiv()">{{i.CharsetDesc}}</span> 
+                </li>
+            </ul>
+            </div>
+            <div class="charsetDiv" ref="charsetDiv">
+                <el-form :label-position="'top'" label-width="80px" :model="formLabelAlign" style="margin:40px;">
+                    <el-form-item :label=" $t(prefix + 'charsetTable.content')">
+                        <el-input v-model="formLabelAlign.CharsetContent"></el-input>
+                    </el-form-item>
+                    <el-form-item :label="$t(prefix + 'charsetTable.desc')">
+                        <el-input v-model="formLabelAlign.CharsetDesc"></el-input>
+                    </el-form-item>
+                    <el-form-item :label="$t(prefix + 'charsetTable.bit')">
+                        <el-input v-model="formLabelAlign.CharByteLen"></el-input>
+                    </el-form-item>
+                     <el-form-item :label="$t(prefix + 'charsetTable.encode')">
+                        <el-input v-model="formLabelAlign.Encoding"></el-input>
+                    </el-form-item>
+                    </el-form>
+            </div>
         </div>
-        
     </el-drawer>
 </template>
 <script>
 import mySlider from "@/components/task/templateConfig/MySlider.vue"
+import vueSlider from 'vue-slider-component'
+import 'vue-slider-component/theme/antd.css'
+import {selectCharset, allCharset} from '@/mock/mock.js'
 import $ from 'jquery'
 export default {
     name:"PwdSpaceConfig",
@@ -40,133 +75,94 @@ export default {
     },
     data(){
         return {
-            value:[1,7],
+            value:[1,3],
             count:256,
-            myPosition:{
-                top:0,
-                bottom:0,
-                now:0,
-                isBtn:0,
-                propoHeight:0
-            },
-            myDefault:null
+            prefix:"app.table.task.templateConfig.",
+            myDefault:null,
+            charsetList:[],
+            allCharset:[],
+            formLabelAlign:{
+                CharByteLen:"",
+                CharsetContent:"",
+                CharsetDesc:"",
+                CharsetType:"",
+                Encoding:""
+            }
+
         }
     },
-    // mounted(){
-    //         //滑块
-    //         let sliderBar = $("#slideBar");
-    //         let bottomBtn = $("#bottomBtn");
-    //         let topBtn = $("#topBtn");
-    //         let mySlider = $("#myslider");
-    //         let myHeight = 0
-
-    //         const elementBottom = (e) => { //计算y坐标
-    //             var offset = e.offsetBottom;
-    //             if(e.offsetParent != null) offset += elementBottom(e.offsetParent);
-    //             return offset;
-    //         }
-
-    //         const myCount = () => { //计算滑动
-    //             if(this.myPosition.bottom>this.myPosition.top){ //判断滑动范围
-    //                 this.myPosition.propoHeight = this.myPosition.bottom - this.myPosition.top
-    //                 sliderBar.style.height = this.myPosition.propoHeight+'%'
-    //                 sliderBar.style.top = this.myPosition.top + '%'
-    //             }else if(this.myPosition.bottom<=this.myPosition.top){
-    //                 this.myPosition.propoHeight = 0 + "px";
-    //                 sliderBar.style.height = 0;
-    //                 sliderBar.style.top = this.myPosition.top+'%'
-
-    //             }
-    //         }
-
-    //         this.myDefault = () => {//初始化
-    //             this.myPosition.top = this.min
-    //             this.myPosition.bottom = this.max
-
-    //             if(this.max > this.min){
-    //                 this.myPosition.propoHeight = this.max - this.min
-    //                 sliderBar.style.top = this.myPosition.top + '%'
-    //             }else{
-    //                 this.myPosition.propoHeight = 0;
-    //                 sliderBar.style.left = this.myPosition.right + '%'
-    //             }
-
-    //             sliderBar.style.height = this.myPosition.propoHeight+'%'
-    //             topBtn.style.top = this.myPosition.top + '%'
-    //             bottomBtn.style.top = this.myPosition.bottom + '%'
-    //         }
-
-    //         let mySliderY = elementBottom(mySlider) //滑动块y坐标
-
-    //         mySlider.addEventListener('touchmove',(e)=>{ //屏幕滑动事件
-    //             let pageY = e.touches[0].pageY-mySliderY //获取滑动Y坐标
-    //             myHeight = (pageY/mySlider.offsetHeight)*100 //计算百分比
-    //             if(myHeight>100){ //判断不超出范围
-    //                 myHeight=100
-    //             }else if(myHeight<0){
-    //                 myHeight=0
-    //             }
-
-    //             if(this.myPosition.isBtn == 1){//判断焦点
-    //                 this.myPosition.top = myHeight
-    //                 topBtn.style.top = myHeight+'%' 
-    //             }else if(this.myPosition.isBtn == 2){
-    //                 this.myPosition.bottom = myHeight
-    //                 leftBtn.style.top = myHeight+'%' 
-    //             }
-
-    //             myCount()
-    //             e.preventDefault()
-
-    //         })
-
-    //         mySlider.addEventListener('touchstart',(e)=>{//屏幕触摸事件
-    //             let touchY = e.touches[0].pageX-mySliderY
-    //             let btnHeight = (leftBtn.offsetHeight/mySlider.offsetHeight)/2*100 //计算按钮宽度
-    //             this.myPosition.now = (touchY/mySlider.offsetHeight)*100
-    //             mySliderY = elementBottom(mySlider) //滑动块x坐标
-    //             if(this.myPosition.now <= this.myPosition.top+btnHeight&&this.myPosition.now >= this.myPosition.top-btnHeight){ //计算区间 获取焦点
-    //                 this.myPosition.isBtn = 1
-    //             }else if(this.myPosition.now <= this.myPosition.bottom+btnHeight&&this.myPosition.now >= this.myPosition.bottom-btnHeight){
-    //                 this.myPosition.isBtn = 2
-    //             }else{
-    //                 this.myPosition.isBtn = 0
-    //             }
-    //         })
-
-    //         this.myDefault()
-    //     },
-    //     watch:{
-    //         min(New,old){
-    //             this.myDefault()
-    //         },
-    //         max(New,old){
-    //             this.myDefault()
-    //         }
-    //     },
-        components:{
-            mySlider
+    methods:{
+        initSlider(){
+            // let res = await getTaskMode(submitData);
+            let res = selectCharset;
+            this.value = [parseInt(res.EleMin), parseInt(res.EleMax)];
+            let charsetArray = res.res;
+            let that = this;
+            charsetArray.forEach(charset =>{
+                var ar = this.charsetList.find(function(elem){
+                    return elem.num == parseInt(charset.PwdElementNo);
+                });
+                ar.charset = charset;
+            })
+        },
+        initAllCharset(){
+            // let res = await getTaskMode(submitData);
+            let res = allCharset;
+            this.allCharset = res.rs;
+        },
+        openDropMenu(e){
+            let charsetMenu = this.$refs.allCharset;
+            console.log(e);
+            charsetMenu.style.top = e.clientY - 20 +"px";
+            charsetMenu.style.left = e.clientX - 210+"px" ;
+            charsetMenu.style.display = "block";
+        },
+        showCharsetDiv(e, charset){
+            let charsetDiv = this.$refs.charsetDiv;
+            this.formLabelAlign = {
+                CharByteLen:charset.CharByteLen,
+                CharsetContent:charset.CharsetContent,
+                CharsetDesc:charset.CharsetDesc,
+                CharsetType:charset.CharsetType,
+                Encoding:charset.Encoding,
+            };
+            console.log(e);
+            charsetDiv.style.top = e.clientY - 20 + "px";
+            charsetDiv.style.left = e.clientX - 210 + 150 + "px";
+            charsetDiv.style.display = "block";
+        },
+        offCharsetDiv(){
+            let charsetDiv = this.$refs.charsetDiv;
+            charsetDiv.style.display = "none";
         }
+    },
+    created(){
+        for(let t = 1; t<=256; t++){
+            this.charsetList.push({num:t, charset:{}});
+        }
+        this.initSlider();
+        this.initAllCharset();
+    },
+    components:{
+        mySlider,
+        vueSlider
+    }
 }
 </script>
 <style scoped>
-    .sliderClass{
-      width:6px;
-      height:15360px;
-      margin:0 16px;
-      background-color: #e4e7ed;
-      border-radius: 3px;
-      position: relative;
-      cursor: pointer;
-      display: block;
-      float: left;
-    }
     .sliderDiv{
         width:100%;
         height:500px;
         OVERFLOW-Y: auto; 
         OVERFLOW-X:hidden;
-        position:relative
+        position:relative;
+    }
+    .allCharset{
+        width:40px;
+        height:100px;
+        OVERFLOW-Y: auto; 
+        OVERFLOW-X:hidden;
+        position:relative;
     }
     .infinite-list .infinite-list-item {
         display: flex;
@@ -174,26 +170,91 @@ export default {
         justify-content: center;
         height: 50px;
         background: #e8f3fe;
-        margin: 10px;
+        margin-bottom: 10px;
+        margin-top:0px;
         color: #7dbcfc;
     }
-    .slideBtn{
-        width: 16px;
-        height: 16px;
-        border: 2px solid #409eff;
-        background-color: #fff;
-        border-radius: 50%;
-        top: auto;
-        margin-left:10px;
-        transform: translateY(50%);
-        cursor: pointer;
+    .infinite-list{
+        margin-top:30px;
     }
-    .slideBar{
-        top:0%;
-        height: 0px;
-        width:6px;
-        background-color: #409eff;
+    .custom-dot {
+        width: 20px;
+        height: 20px;
+        border-radius: 0;
+        left:40%;
+        background-color:#9cd5ff;
+        transition: all .3s;
+    }
+    .custom-dot:hover {
+        transform: rotateZ(45deg);
+    }
+    .count{
+        left: 50px;
         position: absolute;
+        height: 50px;
+        width: 50px;
+        text-align: center;
+        display:block;
+        background-color:#9cd5ff;
+        color:black;
+    }
+    .count-font{
+       position:absolute;
+       top:15px;
+       left:20px;
+    }
+    .menu-item{
+        list-style: none;
+        line-height: 36px;
+        padding: 0 20px;
+        margin: 0;
+        font-size: 14px;
+        color: #606266;
         cursor: pointer;
+        outline: none;
+    }
+    .menu__item:focus, .menu__item:not(.is-disabled):hover {
+        background-color: #ecf5ff;
+        color: #66b1ff;
+    }
+    .allCharset{
+        display:none;
+        width:150px;
+        height:300px;
+        position: absolute;
+        top:0px;
+        left:0px;
+        z-index: 2016;
+        padding: 10px 0;
+        margin: 5px 0;
+        background-color: #fff;
+        border: 1px solid #ebeef5;
+        border-radius: 4px;
+        box-shadow: 0 2px 12px 0 rgba(0,0,0,.1);
+    }
+    .allCharset li{
+        list-style: none;
+        line-height: 36px;
+        padding: 0 20px;
+        margin: 0;
+        font-size: 14px;
+        color: #606266;
+        cursor: pointer;
+        outline: none;
+    }
+    .charsetDiv{
+        display:none;
+        width:400px;
+        height:500px;
+        position:absolute;
+        top:0px;
+        left:0px;
+        z-index: 2016;
+        padding: 10px 0;
+        margin: 5px 0;
+        background-color: #fff;
+        border: 1px solid #ebeef5;
+        border-radius: 4px;
+        box-shadow: 0 2px 12px 0 rgba(0,0,0,.1);
     }
 </style>
