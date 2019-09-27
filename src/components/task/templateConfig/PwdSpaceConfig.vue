@@ -18,12 +18,12 @@
             <div class="allCharset" ref="allCharset">
                  <ul style="overflow:auto">
                 <li v-for="i in allCharset" :key="i.num">
-                    <span  @mouseenter="showCharsetDiv($event, i)" @mouseleave="offCharsetDiv()">{{i.CharsetDesc}}</span> 
+                    <span  @mouseenter="showCharsetDiv($event, i)">{{i.CharsetDesc}}</span> 
                 </li>
             </ul>
             </div>
-            <div class="charsetDiv" ref="charsetDiv">
-                <el-form :label-position="'top'" label-width="80px" :model="formLabelAlign" style="margin:40px;">
+            <div  ref="charsetDiv" class="charsetDiv" :visible.sync="dialogFormVisible">
+                 <el-form :label-position="'top'" label-width="80px" :model="formLabelAlign" style="margin:40px;">
                     <el-form-item :label=" $t(prefix + 'charsetTable.content')">
                         <el-input v-model="formLabelAlign.CharsetContent"></el-input>
                     </el-form-item>
@@ -36,7 +36,9 @@
                      <el-form-item :label="$t(prefix + 'charsetTable.encode')">
                         <el-input v-model="formLabelAlign.Encoding"></el-input>
                     </el-form-item>
-                    </el-form>
+                </el-form>
+                <el-button size="mini" @click="handleConcel">{{$t(prefix + 'btn.cancel')}}</el-button>
+                <el-button size="mini" type="primary" @click="handleConfirm">{{$t(prefix + 'btn.confirm')}}</el-button>
             </div>
         </div>
     </el-drawer>
@@ -87,7 +89,8 @@ export default {
                 CharsetDesc:"",
                 CharsetType:"",
                 Encoding:""
-            }
+            },
+           dialogFormVisible:false
 
         }
     },
@@ -113,8 +116,8 @@ export default {
         openDropMenu(e){
             let charsetMenu = this.$refs.allCharset;
             console.log(e);
-            charsetMenu.style.top = e.clientY - 20 +"px";
-            charsetMenu.style.left = e.clientX - 210+"px" ;
+            charsetMenu.style.top = e.clientY - 50 +"px";
+            charsetMenu.style.left = e.clientX - 200+"px" ;
             charsetMenu.style.display = "block";
         },
         showCharsetDiv(e, charset){
@@ -126,15 +129,23 @@ export default {
                 CharsetType:charset.CharsetType,
                 Encoding:charset.Encoding,
             };
+            console.log($(".allCharset"));
             console.log(e);
-            charsetDiv.style.top = e.clientY - 20 + "px";
-            charsetDiv.style.left = e.clientX - 210 + 150 + "px";
-            charsetDiv.style.display = "block";
+            charsetDiv.style.top = e.clientY - 50 + "px";
+            let left = $(".allCharset").position().left;
+            console.log(left);
+            charsetDiv.style.left = left + 150 + "px";
+            console.log(charsetDiv.style.left);
+            this.dialogFormVisible = true;
         },
-        offCharsetDiv(){
-            let charsetDiv = this.$refs.charsetDiv;
-            charsetDiv.style.display = "none";
+        handleConcel(){
+             let charsetDiv = this.$refs.charsetDiv;
+             charsetDiv.style.display = "none"; 
+        },
+        handleConfirm(){
+
         }
+        
     },
     created(){
         for(let t = 1; t<=256; t++){
@@ -243,9 +254,8 @@ export default {
         outline: none;
     }
     .charsetDiv{
-        display:none;
         width:400px;
-        height:500px;
+        height:600px;
         position:absolute;
         top:0px;
         left:0px;
@@ -254,7 +264,7 @@ export default {
         margin: 5px 0;
         background-color: #fff;
         border: 1px solid #ebeef5;
-        border-radius: 4px;
-        box-shadow: 0 2px 12px 0 rgba(0,0,0,.1);
+       border-radius: 4px;
+       box-shadow: 0 2px 12px 0 rgba(0,0,0,.1);
     }
 </style>

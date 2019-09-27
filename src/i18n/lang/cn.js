@@ -379,6 +379,7 @@ const cn = {
                         ope:"操作"
                     },
                     charsetTable:{
+                        title:"字符集详情",
                         content:"字符集内容",
                         desc:"字符集描述",
                         bit:"单字符字节",

@@ -378,6 +378,7 @@ const en = {
                         ope:"Operation"
                     },
                     charsetTable:{
+                        title:"charset content",
                         content:"Charset Content",
                         desc:"Charset Description",
                         bit:"Single Character Byte",

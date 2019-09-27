@@ -1,5 +1,5 @@
 <template>
-    <div class="cur-dict-main-wrapper">
+    <div id="topDiv" class="cur-dict-main-wrapper">
         <!-- 历史字典任务列表 -->
         <el-card class="app-config-list-card" shadow="hover">
             <div slot="header" class="clearfix">
@@ -240,8 +240,6 @@ export default {
         handleCurrentPageChange(val){
             this.currentPage = val;
             this.initData();
-            console.log("handleCurrentPageChange");
-            window.scroll(0,0);
         },
 
     },
